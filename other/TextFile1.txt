@@ -1,0 +1,36 @@
+﻿> > >>> Výborně. Zamýšlel jsem se nad řízením na hardwarové úrovni a myslím, že
+> > >>> bychom vše mohli mít za pár týdnů funkční.
+> > >>>
+> > >>> Měli bychom vymyslet, jaké signály půjdou mezi tvým softwarem a zařízením
+> > >>> pro řízení točny. Navrhuji následující signály:
+> > >>>
+> > >>> Vstupy do tvého SW (binární):
+> > >>>
+> > >>>     1. Točna se točí po směru hodinových ručiček.
+> > >>>     2. Točna se točí proti směru hodinových ručiček.
+> > >>>     3. Pružinka se dotknula kontaktu.
+> > >>>
+> > >>> Výstupy tvého SW (binární):
+> > >>>
+> > >>>     1. Software aktivní (pokud nastavíš na 0, točna se vždy zastaví).
+> > >>>     2. Toč po směru hodinových ručiček.
+> > >>>     3. Toč proti směru hodinových ručiček.
+> > >>>
+> > >>> Jakmile nastavíš výstupy točení do 0, točna se dotočí na nejbližší pozici
+> > >>> a tam se zastaví, což bude indikovat odpadnutím vstupů (1) nebo (2). Pokud
+> > >>> chceš točnu nouzově zastavit, odepneš vstup (1). V běžném provozu bude (1)
+> > >>> pořád aktivní. Pokud chceš uprostřed otáčení změnit směr, prostě změníš
+> > >>> výstupy (2) a (3).
+> > >>>
+> > >>> Vyhovuje ti takové API?
+> > >>>
+> > >>> Počítání počtu pozic musíš dělat ty v softwaru. Software by měl umožnit
+> > >>> zadat počáteční pozici točny. Možná by se hodilo mít v SW tlačítko "otočit
+> > >>> n pozic po směru hodinových ručiček" a "otočit n pozic proti směru
+> > >>> hodinových ručiček", která by byla nezávislá na aktuálním natočení točny a > > použila se v případě, kdy z nějakého důvodu software má špatnou informaci o > > pozici točny.
+
+Pánové, včera jsme ještě konzultovali točnu s doc. Rybičkou a přišli jsme
+> > >> na řešení, které umožní snímat absolutní pozici točny. Můžete předběžně
+> > >> počítat s tím, že váš program bude mít navíc 6 binárních vstupů, kde n-tý
+> > >> bit je 1 právě tehdy, když je točna v n-té pozici. Orientaci točny nelze
+> > >> rozlišit, což by ale nemělo být potřeba.
