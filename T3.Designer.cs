@@ -44,6 +44,8 @@ namespace T3
       this.label5 = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+      this.labelOutStatus = new System.Windows.Forms.Label();
+      this.labelInStatus = new System.Windows.Forms.Label();
       this.button1 = new System.Windows.Forms.Button();
       this.button2 = new System.Windows.Forms.Button();
       this.button3 = new System.Windows.Forms.Button();
@@ -59,8 +61,7 @@ namespace T3
       this.labelCurrentRail = new System.Windows.Forms.Label();
       this.pictureBox1 = new System.Windows.Forms.PictureBox();
       this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-      this.labelInStatus = new System.Windows.Forms.Label();
-      this.labelOutStatus = new System.Windows.Forms.Label();
+      this.button5 = new System.Windows.Forms.Button();
       this.tableLayoutPanel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
       this.splitContainer1.Panel1.SuspendLayout();
@@ -216,6 +217,24 @@ namespace T3
       this.tableLayoutPanel1.Size = new System.Drawing.Size(287, 130);
       this.tableLayoutPanel1.TabIndex = 13;
       // 
+      // labelOutStatus
+      // 
+      this.labelOutStatus.AutoSize = true;
+      this.labelOutStatus.Location = new System.Drawing.Point(207, 96);
+      this.labelOutStatus.Name = "labelOutStatus";
+      this.labelOutStatus.Size = new System.Drawing.Size(52, 13);
+      this.labelOutStatus.TabIndex = 13;
+      this.labelOutStatus.Text = "statusOut";
+      // 
+      // labelInStatus
+      // 
+      this.labelInStatus.AutoSize = true;
+      this.labelInStatus.Location = new System.Drawing.Point(207, 32);
+      this.labelInStatus.Name = "labelInStatus";
+      this.labelInStatus.Size = new System.Drawing.Size(44, 13);
+      this.labelInStatus.TabIndex = 12;
+      this.labelInStatus.Text = "statusIn";
+      // 
       // button1
       // 
       this.button1.Location = new System.Drawing.Point(3, 252);
@@ -271,6 +290,7 @@ namespace T3
       this.splitContainer1.Panel2.Controls.Add(this.button1);
       this.splitContainer1.Panel2.Controls.Add(this.button4);
       this.splitContainer1.Panel2.Controls.Add(this.button2);
+      this.splitContainer1.Panel2.Controls.Add(this.pictureBoxArrow);
       this.splitContainer1.Panel2.Controls.Add(this.button3);
       this.splitContainer1.Panel2.Controls.Add(this.pictureBox1);
       this.splitContainer1.Size = new System.Drawing.Size(989, 708);
@@ -282,8 +302,8 @@ namespace T3
       this.flowLayoutPanel1.Controls.Add(this.buttonSetCurrentRail);
       this.flowLayoutPanel1.Controls.Add(this.labelBridgeStatus);
       this.flowLayoutPanel1.Controls.Add(this.textBox1);
-      this.flowLayoutPanel1.Controls.Add(this.pictureBoxArrow);
       this.flowLayoutPanel1.Controls.Add(this.splitContainer2);
+      this.flowLayoutPanel1.Controls.Add(this.button5);
       this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
       this.flowLayoutPanel1.Location = new System.Drawing.Point(17, 165);
       this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -298,7 +318,7 @@ namespace T3
       this.buttonSetCurrentRail.TabIndex = 17;
       this.buttonSetCurrentRail.Text = "Nastav počáteční kolej kolej";
       this.buttonSetCurrentRail.UseVisualStyleBackColor = true;
-      this.buttonSetCurrentRail.Click += new System.EventHandler(this.buttonSetCurrentRail_Click);
+      this.buttonSetCurrentRail.Click += new System.EventHandler(this.ButtonSetCurrentRail_Click);
       // 
       // labelBridgeStatus
       // 
@@ -318,8 +338,9 @@ namespace T3
       // 
       // pictureBoxArrow
       // 
+      this.pictureBoxArrow.BackColor = System.Drawing.SystemColors.Control;
       this.pictureBoxArrow.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxArrow.Image")));
-      this.pictureBoxArrow.Location = new System.Drawing.Point(3, 74);
+      this.pictureBoxArrow.Location = new System.Drawing.Point(190, 197);
       this.pictureBoxArrow.Name = "pictureBoxArrow";
       this.pictureBoxArrow.Size = new System.Drawing.Size(140, 139);
       this.pictureBoxArrow.TabIndex = 16;
@@ -327,7 +348,7 @@ namespace T3
       // 
       // splitContainer2
       // 
-      this.splitContainer2.Location = new System.Drawing.Point(3, 219);
+      this.splitContainer2.Location = new System.Drawing.Point(3, 74);
       this.splitContainer2.Name = "splitContainer2";
       // 
       // splitContainer2.Panel1
@@ -375,23 +396,15 @@ namespace T3
       this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
       this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
       // 
-      // labelInStatus
+      // button5
       // 
-      this.labelInStatus.AutoSize = true;
-      this.labelInStatus.Location = new System.Drawing.Point(207, 32);
-      this.labelInStatus.Name = "labelInStatus";
-      this.labelInStatus.Size = new System.Drawing.Size(44, 13);
-      this.labelInStatus.TabIndex = 12;
-      this.labelInStatus.Text = "statusIn";
-      // 
-      // labelOutStatus
-      // 
-      this.labelOutStatus.AutoSize = true;
-      this.labelOutStatus.Location = new System.Drawing.Point(207, 96);
-      this.labelOutStatus.Name = "labelOutStatus";
-      this.labelOutStatus.Size = new System.Drawing.Size(52, 13);
-      this.labelOutStatus.TabIndex = 13;
-      this.labelOutStatus.Text = "statusOut";
+      this.button5.Location = new System.Drawing.Point(3, 176);
+      this.button5.Name = "button5";
+      this.button5.Size = new System.Drawing.Size(75, 23);
+      this.button5.TabIndex = 22;
+      this.button5.Text = "button5";
+      this.button5.UseVisualStyleBackColor = true;
+      this.button5.Click += new System.EventHandler(this.Rotate_Click);
       // 
       // T3
       // 
@@ -455,6 +468,7 @@ namespace T3
     private System.Windows.Forms.TextBox textBox1;
     private System.Windows.Forms.Label labelOutStatus;
     private System.Windows.Forms.Label labelInStatus;
+    private System.Windows.Forms.Button button5;
   }
 }
 

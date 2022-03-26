@@ -17,7 +17,8 @@ namespace T3
     private OutData _outData;
     private InData _inData;
 
-    private byte _currentRailLocationNumber;    
+    private byte _currentRailLocationNumber;
+    private byte _maxNumberOfRails;
 
     private string _ipIn = "127.0.0.1";
     private string _ipOut = "127.0.0.1";
@@ -38,6 +39,7 @@ namespace T3
       OutData = new OutData();
       InData = new InData();
       CurrentRailLocationNumber = 0;
+      _maxNumberOfRails = numberOfRails;
     }
     /// 
     /// Zapouzdreni.
@@ -118,12 +120,11 @@ namespace T3
 
     /**
      * <summary>
-     * Metoda pripoji MyTcpListener na soket nastaveny ve svazanych TextBoxech.
+     * Metoda pripoji MyTcpListener na soket nastaveny v propojenych TextBoxech.
      * <param name="ip">IP adresa.</param>
      * <param name="port">Port, kde se nasloucha.</param>
      * </summary>
      * */
-
     public void ConnectIn()
     {      
       ListenerIn = new MyTcpListener(IpIn, Int32.Parse(PortIn));
@@ -131,20 +132,15 @@ namespace T3
     }
     /**
      * <summary>
-     * Metoda pripoji tcp sender na dany soket.
-     * <param name="ip">IP adresa.</param>
-     * <param name="port">Port.</param>
+     * Metoda pripoji tcp sender na soket nastaveny ve propojenych TextBoxech.
+     * 
      * </summary>
      **/
-    public void ConnectOut(string ip, int port)
+    public void ConnectOut()
     {
-      SenderOut = new MyTcpSender(ip, port);
+      SenderOut = new MyTcpSender(IpOut, int.Parse(PortOut));
     }
-
-    public void ConnectOut(string ip, string port)
-    {
-      ConnectOut(ip, Int32.Parse(port));
-    }
+  
     /**
      * <summary>
      * Metoda posle instrukci k otoceni na tocnu.

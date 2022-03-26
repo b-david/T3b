@@ -33,16 +33,24 @@ namespace T3
       labelOutStatus.DataBindings.Add("Text", Tt, "ConnectionOutStatusString");
       labelBridgeStatus.DataBindings.Add("Text", Tt, "BridgeStatusString");
     }
-
+    /// <summary>
+    /// Metoda zpracovavajici stisk tlacitka pro spusteni naslouchani.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void ButtonConnectIn_Click(object sender, EventArgs e)
     {
       Tt.ConnectIn();
       // #TODO:dodelat zmenu na disconnect
     }
-
+    /// <summary>
+    /// Metoda zpracovavajici stisk tlacitka pro pripojeni k tocne.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void ButtonConnectOut_Click(object sender, EventArgs e)
     {
-      Tt.ConnectOut(textBoxOutIp.Text, textBoxOutPort.Text);
+      Tt.ConnectOut();
     }
 
     private void RailClick(object sender, EventArgs e)
@@ -85,12 +93,9 @@ namespace T3
       pictureBox1.Image = img;
     }
 
-
-
-    private void buttonSetCurrentRail_Click(object sender, EventArgs e)
+    private void ButtonSetCurrentRail_Click(object sender, EventArgs e)
     {
+      MessageBox.Show(Tt.IpOut);
     }
-
-
   }
 }
