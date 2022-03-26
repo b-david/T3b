@@ -59,9 +59,9 @@ namespace T3
       this.splitContainer2 = new System.Windows.Forms.SplitContainer();
       this.label7 = new System.Windows.Forms.Label();
       this.labelCurrentRail = new System.Windows.Forms.Label();
-      this.pictureBox1 = new System.Windows.Forms.PictureBox();
+      this.pictureBoxTurntable = new System.Windows.Forms.PictureBox();
       this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-      this.button5 = new System.Windows.Forms.Button();
+      this.buttonTest = new System.Windows.Forms.Button();
       this.tableLayoutPanel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
       this.splitContainer1.Panel1.SuspendLayout();
@@ -73,7 +73,7 @@ namespace T3
       this.splitContainer2.Panel1.SuspendLayout();
       this.splitContainer2.Panel2.SuspendLayout();
       this.splitContainer2.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTurntable)).BeginInit();
       this.SuspendLayout();
       // 
       // buttonConnectIn
@@ -292,7 +292,7 @@ namespace T3
       this.splitContainer1.Panel2.Controls.Add(this.button2);
       this.splitContainer1.Panel2.Controls.Add(this.pictureBoxArrow);
       this.splitContainer1.Panel2.Controls.Add(this.button3);
-      this.splitContainer1.Panel2.Controls.Add(this.pictureBox1);
+      this.splitContainer1.Panel2.Controls.Add(this.pictureBoxTurntable);
       this.splitContainer1.Size = new System.Drawing.Size(989, 708);
       this.splitContainer1.SplitterDistance = 326;
       this.splitContainer1.TabIndex = 19;
@@ -303,7 +303,7 @@ namespace T3
       this.flowLayoutPanel1.Controls.Add(this.labelBridgeStatus);
       this.flowLayoutPanel1.Controls.Add(this.textBox1);
       this.flowLayoutPanel1.Controls.Add(this.splitContainer2);
-      this.flowLayoutPanel1.Controls.Add(this.button5);
+      this.flowLayoutPanel1.Controls.Add(this.buttonTest);
       this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
       this.flowLayoutPanel1.Location = new System.Drawing.Point(17, 165);
       this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -338,7 +338,7 @@ namespace T3
       // 
       // pictureBoxArrow
       // 
-      this.pictureBoxArrow.BackColor = System.Drawing.SystemColors.Control;
+      this.pictureBoxArrow.BackColor = System.Drawing.Color.Transparent;
       this.pictureBoxArrow.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxArrow.Image")));
       this.pictureBoxArrow.Location = new System.Drawing.Point(190, 197);
       this.pictureBoxArrow.Name = "pictureBoxArrow";
@@ -380,15 +380,15 @@ namespace T3
       this.labelCurrentRail.TabIndex = 19;
       this.labelCurrentRail.Text = "label8";
       // 
-      // pictureBox1
+      // pictureBoxTurntable
       // 
-      this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-      this.pictureBox1.InitialImage = null;
-      this.pictureBox1.Location = new System.Drawing.Point(33, 34);
-      this.pictureBox1.Name = "pictureBox1";
-      this.pictureBox1.Size = new System.Drawing.Size(470, 465);
-      this.pictureBox1.TabIndex = 14;
-      this.pictureBox1.TabStop = false;
+      this.pictureBoxTurntable.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxTurntable.Image")));
+      this.pictureBoxTurntable.InitialImage = null;
+      this.pictureBoxTurntable.Location = new System.Drawing.Point(33, 34);
+      this.pictureBoxTurntable.Name = "pictureBoxTurntable";
+      this.pictureBoxTurntable.Size = new System.Drawing.Size(470, 465);
+      this.pictureBoxTurntable.TabIndex = 14;
+      this.pictureBoxTurntable.TabStop = false;
       // 
       // imageList1
       // 
@@ -396,15 +396,15 @@ namespace T3
       this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
       this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
       // 
-      // button5
+      // buttonTest
       // 
-      this.button5.Location = new System.Drawing.Point(3, 176);
-      this.button5.Name = "button5";
-      this.button5.Size = new System.Drawing.Size(75, 23);
-      this.button5.TabIndex = 22;
-      this.button5.Text = "button5";
-      this.button5.UseVisualStyleBackColor = true;
-      this.button5.Click += new System.EventHandler(this.Rotate_Click);
+      this.buttonTest.Location = new System.Drawing.Point(3, 176);
+      this.buttonTest.Name = "buttonTest";
+      this.buttonTest.Size = new System.Drawing.Size(75, 23);
+      this.buttonTest.TabIndex = 22;
+      this.buttonTest.Text = "button5";
+      this.buttonTest.UseVisualStyleBackColor = true;
+      this.buttonTest.Click += new System.EventHandler(this.Rotate_Click);
       // 
       // T3
       // 
@@ -431,7 +431,7 @@ namespace T3
       this.splitContainer2.Panel2.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
       this.splitContainer2.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTurntable)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -451,7 +451,7 @@ namespace T3
     private System.Windows.Forms.Label label5;
     private System.Windows.Forms.Label label6;
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-    private System.Windows.Forms.PictureBox pictureBox1;
+    private System.Windows.Forms.PictureBox pictureBoxTurntable;
     private System.Windows.Forms.Button button1;
     private System.Windows.Forms.Button button2;
     private System.Windows.Forms.Button button3;
@@ -468,7 +468,7 @@ namespace T3
     private System.Windows.Forms.TextBox textBox1;
     private System.Windows.Forms.Label labelOutStatus;
     private System.Windows.Forms.Label labelInStatus;
-    private System.Windows.Forms.Button button5;
+    private System.Windows.Forms.Button buttonTest;
   }
 }
 

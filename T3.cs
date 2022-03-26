@@ -85,12 +85,17 @@ namespace T3
     {
       Tt.DisconnectAll();
     }
-
+    /// <summary>
+    /// Pracovni metoda
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void Rotate_Click(object sender, EventArgs e)
     {
-      Image img = pictureBox1.Image;
-      img.RotateFlip(RotateFlipType.Rotate90FlipNone);
-      pictureBox1.Image = img;
+      //Image img = pictureBoxTurntable.Image;
+      //img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+      //pictureBoxTurntable.Image = img;
+
     }
 
     private void ButtonSetCurrentRail_Click(object sender, EventArgs e)
