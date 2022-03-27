@@ -369,7 +369,7 @@ namespace T3
       this.numericUpDownNumberOfRails.Size = new System.Drawing.Size(60, 20);
       this.numericUpDownNumberOfRails.TabIndex = 1;
       this.numericUpDownNumberOfRails.Value = new decimal(new int[] {
-            1,
+            5,
             0,
             0,
             0});

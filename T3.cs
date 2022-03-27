@@ -7,7 +7,7 @@ namespace T3
 
   public partial class T3 : Form
   {
-    private TurnTable _tt;    
+    private TurnTable _tt;
     public TurnTable Tt { get => _tt; set => _tt = value; }
 
     private static int railButtonSize = 50;
@@ -94,20 +94,20 @@ namespace T3
       //pictureBoxTurntable.Image = img;
 
       //pridani tlacitka
-      for (int i = 0; i<1; i++)
+      for (int i = 0; i < 1; i++)
       {
 
       }
       Button tlacidlo = new Button
       {
         Text = "Nove tlacitko",
-        Location = new Point(10,10),
+        Location = new Point(10, 10),
         Size = new Size(50, 100),
       };
 
       //pictureBoxTurntable.Controls.Add(tlacidlo);
       //Controls.Add(tlacidlo);
-      
+
     }
     /// Jeste neimplementovano.
     private void ButtonSetCurrentRail_Click(object sender, EventArgs e)
@@ -121,38 +121,42 @@ namespace T3
     /// <param name="e"></param>
     private void ButtonCreateRails_Click(object sender, EventArgs e)
     {
+      createRailButtons();
+    }
+    private void createRailButtons()
+    {
       try
       {
         // prevod z numerickupdown decimal hodnoty na int
-        int railNumber = Decimal.ToInt32(numericUpDownNumberOfRails.Value);        
+        int numberOfRails = Decimal.ToInt32(numericUpDownNumberOfRails.Value);
         // zjistit pocatecni pozici koleji
-        //
-        // panel_x/2-image_x/2-offset
-        int x = splitContainerMain.Panel2.Size.Width / 2 - splitContainerMain.Panel2.BackgroundImage.Width / 2 - railButtonOffset;
-        // panel_y/2 - offset 
-        int y = splitContainerMain.Panel2.Size.Height / 2 - railButtonOffset;
+
+        /// Stredove souradnice obrazku tocny.
+        int h = splitContainerMain.Panel2.Size.Width / 2;
+        int k = splitContainerMain.Panel2.Size.Height / 2;
+
+        // Polomer obrazk tocny.
+        int r = splitContainerMain.Panel2.BackgroundImage.Size.Width / 2;
+
+        double x, y, a;
         // dynamicke tvoreni tlacitek
-        for (int i = 0; i<railNumber; i++)
+        for (int i = 0; i < numberOfRails; i++)
         {
+          a = Math.PI + 2 * Math.PI / numberOfRails * i;
+          x = r * Math.Cos(a) + h - railButtonOffset;
+          y = r * Math.Sin(a) + k - railButtonOffset;
+
           Button b = new Button
           {
             Text = i.ToString(),
-            Location = new Point(x, y),
+            Location = new Point(Convert.ToInt32(x), Convert.ToInt32(y)),
             Size = new Size(railButtonSize, railButtonSize)
+
           };
-
-          
-
-
-        }      
-      } catch (Exception ex){MessageBox.Show(ex.ToString());}
-
-      
-      
-
-      
-
-      //splitContainerMain.Panel2.Controls.Add(b);
+          splitContainerMain.Panel2.Controls.Add(b);
+        }
+      }
+      catch (Exception ex) { MessageBox.Show(ex.ToString()); }
 
     }
   }
