@@ -112,19 +112,23 @@ namespace T3
     /// Jeste neimplementovano.
     private void ButtonSetCurrentRail_Click(object sender, EventArgs e)
     {
-      // neimplementováno
+      throw new NotImplementedException();
     }
     /// <summary>
-    /// Metoda vytvori potrebny pocet tlacitek a nastavi vnitrni hodnoty.
+    /// Metoda zpracovavajici kliknuti na tlacitko vytvorit koleje.
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
     private void ButtonCreateRails_Click(object sender, EventArgs e)
     {
-      createRailButtons();
+      CreateRailButtons();
     }
-    private void createRailButtons()
+    /// <summary>
+    /// Metoda vytvori potrebny pocet tlacitek a nastavi vnitrni hodnoty.
+    /// </summary>
+    private void CreateRailButtons()
     {
+      DeletePanel2Buttons();
       try
       {
         // prevod z numerickupdown decimal hodnoty na int
@@ -154,10 +158,16 @@ namespace T3
 
           };
           splitContainerMain.Panel2.Controls.Add(b);
+          b.Click += new EventHandler(RailClick); 
         }
       }
       catch (Exception ex) { MessageBox.Show(ex.ToString()); }
 
+    }
+
+    public void DeletePanel2Buttons()
+    {
+      splitContainerMain.Panel2.Controls.Clear();
     }
   }
 }

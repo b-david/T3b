@@ -198,8 +198,9 @@ namespace T3
 
     public void InvokePropertyChanged(PropertyChangedEventArgs e)
     {
-      PropertyChangedEventHandler handler = PropertyChanged;
-      if (handler != null) handler(this, e);
+      //PropertyChangedEventHandler handler = PropertyChanged;
+      //if (handler != null) handler(this, e);
+      PropertyChanged?.Invoke(this, e);
     }
 
     #endregion
