@@ -29,7 +29,6 @@ namespace T3
     /// </summary>
     private void InitializeComponent()
     {
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(T3));
       this.buttonConnectIn = new System.Windows.Forms.Button();
       this.buttonConnectOut = new System.Windows.Forms.Button();
       this.textBoxInIp = new System.Windows.Forms.TextBox();
@@ -45,10 +44,6 @@ namespace T3
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.labelOutStatus = new System.Windows.Forms.Label();
       this.labelInStatus = new System.Windows.Forms.Label();
-      this.button1 = new System.Windows.Forms.Button();
-      this.button2 = new System.Windows.Forms.Button();
-      this.button3 = new System.Windows.Forms.Button();
-      this.button4 = new System.Windows.Forms.Button();
       this.splitContainerMain = new System.Windows.Forms.SplitContainer();
       this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
       this.buttonSetCurrentRail = new System.Windows.Forms.Button();
@@ -58,8 +53,6 @@ namespace T3
       this.label7 = new System.Windows.Forms.Label();
       this.labelCurrentRail = new System.Windows.Forms.Label();
       this.buttonTest = new System.Windows.Forms.Button();
-      this.pictureBoxArrow = new System.Windows.Forms.PictureBox();
-      this.pictureBoxTurntable = new System.Windows.Forms.PictureBox();
       this.flowLayoutPanelNumberOfRails = new System.Windows.Forms.FlowLayoutPanel();
       this.label8 = new System.Windows.Forms.Label();
       this.numericUpDownNumberOfRails = new System.Windows.Forms.NumericUpDown();
@@ -67,15 +60,12 @@ namespace T3
       this.tableLayoutPanel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
       this.splitContainerMain.Panel1.SuspendLayout();
-      this.splitContainerMain.Panel2.SuspendLayout();
       this.splitContainerMain.SuspendLayout();
       this.flowLayoutPanel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerCurrentRail)).BeginInit();
       this.splitContainerCurrentRail.Panel1.SuspendLayout();
       this.splitContainerCurrentRail.Panel2.SuspendLayout();
       this.splitContainerCurrentRail.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArrow)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTurntable)).BeginInit();
       this.flowLayoutPanelNumberOfRails.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumberOfRails)).BeginInit();
       this.SuspendLayout();
@@ -239,47 +229,6 @@ namespace T3
       this.labelInStatus.TabIndex = 12;
       this.labelInStatus.Text = "statusIn";
       // 
-      // button1
-      // 
-      this.button1.Location = new System.Drawing.Point(3, 252);
-      this.button1.Name = "button1";
-      this.button1.Size = new System.Drawing.Size(75, 23);
-      this.button1.TabIndex = 15;
-      this.button1.Text = "0";
-      this.button1.UseVisualStyleBackColor = true;
-      this.button1.Click += new System.EventHandler(this.RailClick);
-      // 
-      // button2
-      // 
-      this.button2.Location = new System.Drawing.Point(57, 96);
-      this.button2.Name = "button2";
-      this.button2.Size = new System.Drawing.Size(75, 23);
-      this.button2.TabIndex = 16;
-      this.button2.Text = "1";
-      this.button2.UseVisualStyleBackColor = true;
-      this.button2.Click += new System.EventHandler(this.RailClick);
-      // 
-      // button3
-      // 
-      this.button3.Location = new System.Drawing.Point(226, 29);
-      this.button3.Name = "button3";
-      this.button3.Size = new System.Drawing.Size(75, 23);
-      this.button3.TabIndex = 17;
-      this.button3.Text = "2";
-      this.button3.UseCompatibleTextRendering = true;
-      this.button3.UseVisualStyleBackColor = true;
-      this.button3.Click += new System.EventHandler(this.RailClick);
-      // 
-      // button4
-      // 
-      this.button4.Location = new System.Drawing.Point(396, 102);
-      this.button4.Name = "button4";
-      this.button4.Size = new System.Drawing.Size(75, 23);
-      this.button4.TabIndex = 18;
-      this.button4.Text = "3";
-      this.button4.UseVisualStyleBackColor = true;
-      this.button4.Click += new System.EventHandler(this.RailClick);
-      // 
       // splitContainerMain
       // 
       this.splitContainerMain.Location = new System.Drawing.Point(0, 25);
@@ -294,12 +243,6 @@ namespace T3
       // 
       this.splitContainerMain.Panel2.BackgroundImage = global::T3.Properties.Resources.turntable;
       this.splitContainerMain.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-      this.splitContainerMain.Panel2.Controls.Add(this.button1);
-      this.splitContainerMain.Panel2.Controls.Add(this.button4);
-      this.splitContainerMain.Panel2.Controls.Add(this.button2);
-      this.splitContainerMain.Panel2.Controls.Add(this.pictureBoxArrow);
-      this.splitContainerMain.Panel2.Controls.Add(this.button3);
-      this.splitContainerMain.Panel2.Controls.Add(this.pictureBoxTurntable);
       this.splitContainerMain.Size = new System.Drawing.Size(983, 700);
       this.splitContainerMain.SplitterDistance = 324;
       this.splitContainerMain.TabIndex = 19;
@@ -388,26 +331,6 @@ namespace T3
       this.buttonTest.UseVisualStyleBackColor = true;
       this.buttonTest.Click += new System.EventHandler(this.Rotate_Click);
       // 
-      // pictureBoxArrow
-      // 
-      this.pictureBoxArrow.BackColor = System.Drawing.Color.Transparent;
-      this.pictureBoxArrow.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxArrow.Image")));
-      this.pictureBoxArrow.Location = new System.Drawing.Point(190, 197);
-      this.pictureBoxArrow.Name = "pictureBoxArrow";
-      this.pictureBoxArrow.Size = new System.Drawing.Size(140, 139);
-      this.pictureBoxArrow.TabIndex = 16;
-      this.pictureBoxArrow.TabStop = false;
-      // 
-      // pictureBoxTurntable
-      // 
-      this.pictureBoxTurntable.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxTurntable.Image")));
-      this.pictureBoxTurntable.InitialImage = null;
-      this.pictureBoxTurntable.Location = new System.Drawing.Point(3, 3);
-      this.pictureBoxTurntable.Name = "pictureBoxTurntable";
-      this.pictureBoxTurntable.Size = new System.Drawing.Size(510, 510);
-      this.pictureBoxTurntable.TabIndex = 14;
-      this.pictureBoxTurntable.TabStop = false;
-      // 
       // flowLayoutPanelNumberOfRails
       // 
       this.flowLayoutPanelNumberOfRails.Controls.Add(this.label8);
@@ -473,7 +396,6 @@ namespace T3
       this.tableLayoutPanel1.ResumeLayout(false);
       this.tableLayoutPanel1.PerformLayout();
       this.splitContainerMain.Panel1.ResumeLayout(false);
-      this.splitContainerMain.Panel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
       this.splitContainerMain.ResumeLayout(false);
       this.flowLayoutPanel1.ResumeLayout(false);
@@ -484,8 +406,6 @@ namespace T3
       this.splitContainerCurrentRail.Panel2.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerCurrentRail)).EndInit();
       this.splitContainerCurrentRail.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArrow)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTurntable)).EndInit();
       this.flowLayoutPanelNumberOfRails.ResumeLayout(false);
       this.flowLayoutPanelNumberOfRails.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumberOfRails)).EndInit();
@@ -508,13 +428,7 @@ namespace T3
     private System.Windows.Forms.Label label5;
     private System.Windows.Forms.Label label6;
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-    private System.Windows.Forms.PictureBox pictureBoxTurntable;
-    private System.Windows.Forms.Button button1;
-    private System.Windows.Forms.Button button2;
-    private System.Windows.Forms.Button button3;
-    private System.Windows.Forms.Button button4;
     private System.Windows.Forms.SplitContainer splitContainerMain;
-    private System.Windows.Forms.PictureBox pictureBoxArrow;
     private System.Windows.Forms.Label labelBridgeStatus;
     private System.Windows.Forms.Label labelCurrentRail;
     private System.Windows.Forms.Label label7;

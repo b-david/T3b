@@ -7,12 +7,11 @@ namespace T3
 
   public partial class T3 : Form
   {
-    private TurnTable _tt;
-    private Button[] _railButtons;
+    private TurnTable _tt;    
     public TurnTable Tt { get => _tt; set => _tt = value; }
 
     private static int railButtonSize = 50;
-
+    private static int railButtonOffset = railButtonSize / 2;
     /**
      * <summary>
      * Konstruktor
@@ -90,9 +89,9 @@ namespace T3
     /// <param name="e"></param>
     private void Rotate_Click(object sender, EventArgs e)
     {
-      Image img = pictureBoxTurntable.Image;
-      img.RotateFlip(RotateFlipType.Rotate90FlipNone);
-      pictureBoxTurntable.Image = img;
+      //Image img = pictureBoxTurntable.Image;
+      //img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+      //pictureBoxTurntable.Image = img;
 
       //pridani tlacitka
       for (int i = 0; i<1; i++)
@@ -106,7 +105,7 @@ namespace T3
         Size = new Size(50, 100),
       };
 
-      pictureBoxTurntable.Controls.Add(tlacidlo);
+      //pictureBoxTurntable.Controls.Add(tlacidlo);
       //Controls.Add(tlacidlo);
       
     }
@@ -125,27 +124,35 @@ namespace T3
       try
       {
         // prevod z numerickupdown decimal hodnoty na int
-        int railNumber = Decimal.ToInt32(numericUpDownNumberOfRails.Value);
-        // vytvoreni pole tlacitek
-        _railButtons = new Button[railNumber];
+        int railNumber = Decimal.ToInt32(numericUpDownNumberOfRails.Value);        
+        // zjistit pocatecni pozici koleji
+        //
+        // panel_x/2-image_x/2-offset
+        int x = splitContainerMain.Panel2.Size.Width / 2 - splitContainerMain.Panel2.BackgroundImage.Width / 2 - railButtonOffset;
+        // panel_y/2 - offset 
+        int y = splitContainerMain.Panel2.Size.Height / 2 - railButtonOffset;
+        // dynamicke tvoreni tlacitek
         for (int i = 0; i<railNumber; i++)
         {
+          Button b = new Button
+          {
+            Text = i.ToString(),
+            Location = new Point(x, y),
+            Size = new Size(railButtonSize, railButtonSize)
+          };
+
+          
+
 
         }      
       } catch (Exception ex){MessageBox.Show(ex.ToString());}
 
-      // zjistit pocatecni pozici koleji
-      int x = -railButtonSize/2;
-      int y = pictureBoxTurntable.Size.Height / 2 -railButtonSize/2;
-      int counter = 0;
-      Button b = new Button
-      {
-        Text = counter.ToString(),
-        Location = new Point(x, y),
-        Size = new Size(railButtonSize, railButtonSize)
-      };
+      
+      
 
-      pictureBoxTurntable.Controls.Add(b);
+      
+
+      //splitContainerMain.Panel2.Controls.Add(b);
 
     }
   }
