@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -9,7 +8,7 @@ namespace T3
   public partial class T3 : Form
   {
     private TurnTable _tt;
-
+    private Button[] _railButtons;
     public TurnTable Tt { get => _tt; set => _tt = value; }
 
     /**
@@ -74,10 +73,7 @@ namespace T3
 
     }
 
-    private void T3_Load(object sender, EventArgs e)
-    {
 
-    }
     /**
      * <summary>Odpojeni vsech spojeni a ukonceni pripadnych vlaken.</summary>
      * */
@@ -92,12 +88,27 @@ namespace T3
     /// <param name="e"></param>
     private void Rotate_Click(object sender, EventArgs e)
     {
-      //Image img = pictureBoxTurntable.Image;
-      //img.RotateFlip(RotateFlipType.Rotate90FlipNone);
-      //pictureBoxTurntable.Image = img;
+      Image img = pictureBoxTurntable.Image;
+      img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+      pictureBoxTurntable.Image = img;
 
+      //pridani tlacitka
+      for (int i = 0; i<1; i++)
+      {
+
+      }
+      Button tlacidlo = new Button
+      {
+        Text = "Nove tlacitko",
+        Location = new Point(10,10),
+        Size = new Size(50, 100),
+      };
+
+      pictureBoxTurntable.Controls.Add(tlacidlo);
+      //Controls.Add(tlacidlo);
+      
     }
-
+    /// Jeste neimplementovano.
     private void ButtonSetCurrentRail_Click(object sender, EventArgs e)
     {
       MessageBox.Show(Tt.IpOut);
