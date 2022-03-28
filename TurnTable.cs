@@ -4,9 +4,11 @@ using System.ComponentModel;
 namespace T3
 {
 
-
-
-
+  public enum TurnDirection
+  {
+    CW,
+    CCW
+  }
 
   public class TurnTable : INotifyPropertyChanged
   {
@@ -34,16 +36,13 @@ namespace T3
      * </summary>
      * **/
     public TurnTable(byte numberOfRails)
-    {
-      OutData = new OutData();
-      InData = new InData();
+    {            
       CurrentRailLocationNumber = 0;
       _maxNumberOfRails = numberOfRails;
     }
     /// 
     /// Zapouzdreni.
-    /// 
-    public OutData OutData { get => _outData; set => _outData = value; }
+    ///     
     public InData InData { get => _inData; set => _inData = value; }
     internal MyTcpListener ListenerIn { get => _listenerIn; set => _listenerIn = value; }
     internal MyTcpSender SenderOut { get => _senderOut; set => _senderOut = value; }
@@ -59,7 +58,7 @@ namespace T3
 
     public string CurrentRailLocationString
     {
-      get => CurrentRailLocationNumber.ToString();      
+      get => CurrentRailLocationNumber.ToString();
     }
 
     public string IpIn
@@ -125,7 +124,7 @@ namespace T3
      * </summary>
      * */
     public void ConnectIn()
-    {      
+    {
       ListenerIn = new MyTcpListener(IpIn, Int32.Parse(PortIn));
       ListenerIn.StartTcpListenerThread();
     }
@@ -139,7 +138,7 @@ namespace T3
     {
       SenderOut = new MyTcpSender(IpOut, int.Parse(PortOut));
     }
-  
+
     /**
      * <summary>
      * Metoda posle instrukci k otoceni na tocnu.
@@ -152,6 +151,16 @@ namespace T3
       Send(bArray);
       CurrentRailLocationNumber = railNumber;
     }
+    /// <summary>
+    /// Metoda vynuti otoceni tocny danym smerem <paramref name="direction"/>, aniz by se zmena projevila na vnitrnich hodnotach.
+    /// </summary>
+    /// <param name="direction">Smer, kterym se ma tocna otocit.</param>
+    /// #TODO vymyslet, jak to udelat, aby se zmena neprojevila na vnitrni strukture.
+    public void ForceTurn(TurnDirection direction)
+    {
+      throw new NotImplementedException();
+    }
+
     /**
      * <summary>
      * Metoda posle <paramref name="data"/> na tocnu.
@@ -191,7 +200,9 @@ namespace T3
       DisconnectListener();
       DisconnectSender();
     }
-
+    /// <summary>
+    /// Oblast umoznujici propojeni GUI prvku s vlastnostmi tridy.
+    /// </summary>
     #region Implementation of INotifyPropertyChanged
 
     public event PropertyChangedEventHandler PropertyChanged;

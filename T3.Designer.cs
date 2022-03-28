@@ -41,14 +41,13 @@ namespace T3
       this.label4 = new System.Windows.Forms.Label();
       this.label5 = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
-      this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+      this.tableLayoutPanelConnectionSettings = new System.Windows.Forms.TableLayoutPanel();
       this.labelOutStatus = new System.Windows.Forms.Label();
       this.labelInStatus = new System.Windows.Forms.Label();
       this.splitContainerMain = new System.Windows.Forms.SplitContainer();
       this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
       this.buttonSetCurrentRail = new System.Windows.Forms.Button();
       this.labelBridgeStatus = new System.Windows.Forms.Label();
-      this.textBox1 = new System.Windows.Forms.TextBox();
       this.splitContainerCurrentRail = new System.Windows.Forms.SplitContainer();
       this.label7 = new System.Windows.Forms.Label();
       this.labelCurrentRail = new System.Windows.Forms.Label();
@@ -57,7 +56,10 @@ namespace T3
       this.label8 = new System.Windows.Forms.Label();
       this.numericUpDownNumberOfRails = new System.Windows.Forms.NumericUpDown();
       this.buttonCreateRails = new System.Windows.Forms.Button();
-      this.tableLayoutPanel1.SuspendLayout();
+      this.splitContainerForceTurn = new System.Windows.Forms.SplitContainer();
+      this.buttonForceTurnCW = new System.Windows.Forms.Button();
+      this.buttonForceTurnCCW = new System.Windows.Forms.Button();
+      this.tableLayoutPanelConnectionSettings.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
       this.splitContainerMain.Panel1.SuspendLayout();
       this.splitContainerMain.SuspendLayout();
@@ -68,12 +70,16 @@ namespace T3
       this.splitContainerCurrentRail.SuspendLayout();
       this.flowLayoutPanelNumberOfRails.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumberOfRails)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.splitContainerForceTurn)).BeginInit();
+      this.splitContainerForceTurn.Panel1.SuspendLayout();
+      this.splitContainerForceTurn.Panel2.SuspendLayout();
+      this.splitContainerForceTurn.SuspendLayout();
       this.SuspendLayout();
       // 
       // buttonConnectIn
       // 
       this.buttonConnectIn.DialogResult = System.Windows.Forms.DialogResult.Yes;
-      this.buttonConnectIn.Location = new System.Drawing.Point(207, 3);
+      this.buttonConnectIn.Location = new System.Drawing.Point(186, 3);
       this.buttonConnectIn.Name = "buttonConnectIn";
       this.buttonConnectIn.Size = new System.Drawing.Size(75, 23);
       this.buttonConnectIn.TabIndex = 0;
@@ -83,7 +89,7 @@ namespace T3
       // 
       // buttonConnectOut
       // 
-      this.buttonConnectOut.Location = new System.Drawing.Point(207, 67);
+      this.buttonConnectOut.Location = new System.Drawing.Point(186, 71);
       this.buttonConnectOut.Name = "buttonConnectOut";
       this.buttonConnectOut.Size = new System.Drawing.Size(75, 23);
       this.buttonConnectOut.TabIndex = 1;
@@ -93,7 +99,7 @@ namespace T3
       // 
       // textBoxInIp
       // 
-      this.textBoxInIp.Location = new System.Drawing.Point(124, 3);
+      this.textBoxInIp.Location = new System.Drawing.Point(83, 3);
       this.textBoxInIp.Name = "textBoxInIp";
       this.textBoxInIp.Size = new System.Drawing.Size(77, 20);
       this.textBoxInIp.TabIndex = 2;
@@ -101,7 +107,7 @@ namespace T3
       // 
       // textBoxOutIp
       // 
-      this.textBoxOutIp.Location = new System.Drawing.Point(124, 67);
+      this.textBoxOutIp.Location = new System.Drawing.Point(83, 71);
       this.textBoxOutIp.Name = "textBoxOutIp";
       this.textBoxOutIp.Size = new System.Drawing.Size(77, 20);
       this.textBoxOutIp.TabIndex = 3;
@@ -109,7 +115,7 @@ namespace T3
       // 
       // textBoxOutPort
       // 
-      this.textBoxOutPort.Location = new System.Drawing.Point(124, 99);
+      this.textBoxOutPort.Location = new System.Drawing.Point(83, 105);
       this.textBoxOutPort.Name = "textBoxOutPort";
       this.textBoxOutPort.Size = new System.Drawing.Size(77, 20);
       this.textBoxOutPort.TabIndex = 4;
@@ -117,7 +123,7 @@ namespace T3
       // 
       // textBoxInPort
       // 
-      this.textBoxInPort.Location = new System.Drawing.Point(124, 35);
+      this.textBoxInPort.Location = new System.Drawing.Point(83, 37);
       this.textBoxInPort.Name = "textBoxInPort";
       this.textBoxInPort.Size = new System.Drawing.Size(77, 20);
       this.textBoxInPort.TabIndex = 5;
@@ -126,7 +132,7 @@ namespace T3
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(89, 0);
+      this.label1.Location = new System.Drawing.Point(48, 0);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(20, 13);
       this.label1.TabIndex = 6;
@@ -135,7 +141,7 @@ namespace T3
       // label2
       // 
       this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(89, 32);
+      this.label2.Location = new System.Drawing.Point(48, 34);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(29, 13);
       this.label2.TabIndex = 7;
@@ -144,7 +150,7 @@ namespace T3
       // label3
       // 
       this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(89, 64);
+      this.label3.Location = new System.Drawing.Point(48, 68);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(20, 13);
       this.label3.TabIndex = 8;
@@ -153,7 +159,7 @@ namespace T3
       // label4
       // 
       this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(89, 96);
+      this.label4.Location = new System.Drawing.Point(48, 102);
       this.label4.Name = "label4";
       this.label4.Size = new System.Drawing.Size(29, 13);
       this.label4.TabIndex = 9;
@@ -162,59 +168,60 @@ namespace T3
       // label5
       // 
       this.label5.AutoSize = true;
-      this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+      this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
       this.label5.Location = new System.Drawing.Point(3, 0);
       this.label5.Name = "label5";
-      this.tableLayoutPanel1.SetRowSpan(this.label5, 2);
-      this.label5.Size = new System.Drawing.Size(46, 33);
+      this.tableLayoutPanelConnectionSettings.SetRowSpan(this.label5, 2);
+      this.label5.Size = new System.Drawing.Size(39, 26);
       this.label5.TabIndex = 10;
-      this.label5.Text = "IN";
+      this.label5.Text = "Síťový\r\nvstup";
       // 
       // label6
       // 
       this.label6.AutoSize = true;
-      this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-      this.label6.Location = new System.Drawing.Point(3, 64);
+      this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+      this.label6.Location = new System.Drawing.Point(3, 68);
       this.label6.Name = "label6";
-      this.label6.Size = new System.Drawing.Size(80, 32);
+      this.label6.Size = new System.Drawing.Size(39, 26);
       this.label6.TabIndex = 11;
-      this.label6.Text = "OUT";
+      this.label6.Text = "Síťový\r\nvýstup";
       // 
-      // tableLayoutPanel1
+      // tableLayoutPanelConnectionSettings
       // 
-      this.tableLayoutPanel1.ColumnCount = 4;
-      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-      this.tableLayoutPanel1.Controls.Add(this.label5, 0, 0);
-      this.tableLayoutPanel1.Controls.Add(this.textBoxOutPort, 2, 3);
-      this.tableLayoutPanel1.Controls.Add(this.label4, 1, 3);
-      this.tableLayoutPanel1.Controls.Add(this.textBoxOutIp, 2, 2);
-      this.tableLayoutPanel1.Controls.Add(this.label6, 0, 2);
-      this.tableLayoutPanel1.Controls.Add(this.label3, 1, 2);
-      this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
-      this.tableLayoutPanel1.Controls.Add(this.textBoxInPort, 2, 1);
-      this.tableLayoutPanel1.Controls.Add(this.label2, 1, 1);
-      this.tableLayoutPanel1.Controls.Add(this.textBoxInIp, 2, 0);
-      this.tableLayoutPanel1.Controls.Add(this.buttonConnectIn, 3, 0);
-      this.tableLayoutPanel1.Controls.Add(this.buttonConnectOut, 3, 2);
-      this.tableLayoutPanel1.Controls.Add(this.labelOutStatus, 3, 3);
-      this.tableLayoutPanel1.Controls.Add(this.labelInStatus, 3, 1);
-      this.tableLayoutPanel1.Location = new System.Drawing.Point(17, 29);
-      this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-      this.tableLayoutPanel1.RowCount = 4;
-      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-      this.tableLayoutPanel1.Size = new System.Drawing.Size(287, 130);
-      this.tableLayoutPanel1.TabIndex = 13;
+      this.tableLayoutPanelConnectionSettings.BackColor = System.Drawing.SystemColors.ControlDark;
+      this.tableLayoutPanelConnectionSettings.ColumnCount = 4;
+      this.tableLayoutPanelConnectionSettings.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+      this.tableLayoutPanelConnectionSettings.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+      this.tableLayoutPanelConnectionSettings.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+      this.tableLayoutPanelConnectionSettings.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+      this.tableLayoutPanelConnectionSettings.Controls.Add(this.label5, 0, 0);
+      this.tableLayoutPanelConnectionSettings.Controls.Add(this.textBoxOutPort, 2, 3);
+      this.tableLayoutPanelConnectionSettings.Controls.Add(this.label4, 1, 3);
+      this.tableLayoutPanelConnectionSettings.Controls.Add(this.textBoxOutIp, 2, 2);
+      this.tableLayoutPanelConnectionSettings.Controls.Add(this.label6, 0, 2);
+      this.tableLayoutPanelConnectionSettings.Controls.Add(this.label3, 1, 2);
+      this.tableLayoutPanelConnectionSettings.Controls.Add(this.label1, 1, 0);
+      this.tableLayoutPanelConnectionSettings.Controls.Add(this.textBoxInPort, 2, 1);
+      this.tableLayoutPanelConnectionSettings.Controls.Add(this.label2, 1, 1);
+      this.tableLayoutPanelConnectionSettings.Controls.Add(this.textBoxInIp, 2, 0);
+      this.tableLayoutPanelConnectionSettings.Controls.Add(this.buttonConnectIn, 3, 0);
+      this.tableLayoutPanelConnectionSettings.Controls.Add(this.buttonConnectOut, 3, 2);
+      this.tableLayoutPanelConnectionSettings.Controls.Add(this.labelOutStatus, 3, 3);
+      this.tableLayoutPanelConnectionSettings.Controls.Add(this.labelInStatus, 3, 1);
+      this.tableLayoutPanelConnectionSettings.Location = new System.Drawing.Point(17, 21);
+      this.tableLayoutPanelConnectionSettings.Name = "tableLayoutPanelConnectionSettings";
+      this.tableLayoutPanelConnectionSettings.RowCount = 4;
+      this.tableLayoutPanelConnectionSettings.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+      this.tableLayoutPanelConnectionSettings.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+      this.tableLayoutPanelConnectionSettings.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+      this.tableLayoutPanelConnectionSettings.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+      this.tableLayoutPanelConnectionSettings.Size = new System.Drawing.Size(287, 138);
+      this.tableLayoutPanelConnectionSettings.TabIndex = 13;
       // 
       // labelOutStatus
       // 
       this.labelOutStatus.AutoSize = true;
-      this.labelOutStatus.Location = new System.Drawing.Point(207, 96);
+      this.labelOutStatus.Location = new System.Drawing.Point(186, 102);
       this.labelOutStatus.Name = "labelOutStatus";
       this.labelOutStatus.Size = new System.Drawing.Size(52, 13);
       this.labelOutStatus.TabIndex = 13;
@@ -223,7 +230,7 @@ namespace T3
       // labelInStatus
       // 
       this.labelInStatus.AutoSize = true;
-      this.labelInStatus.Location = new System.Drawing.Point(207, 32);
+      this.labelInStatus.Location = new System.Drawing.Point(186, 34);
       this.labelInStatus.Name = "labelInStatus";
       this.labelInStatus.Size = new System.Drawing.Size(44, 13);
       this.labelInStatus.TabIndex = 12;
@@ -237,7 +244,7 @@ namespace T3
       // splitContainerMain.Panel1
       // 
       this.splitContainerMain.Panel1.Controls.Add(this.flowLayoutPanel1);
-      this.splitContainerMain.Panel1.Controls.Add(this.tableLayoutPanel1);
+      this.splitContainerMain.Panel1.Controls.Add(this.tableLayoutPanelConnectionSettings);
       // 
       // splitContainerMain.Panel2
       // 
@@ -251,10 +258,10 @@ namespace T3
       // 
       this.flowLayoutPanel1.Controls.Add(this.buttonSetCurrentRail);
       this.flowLayoutPanel1.Controls.Add(this.labelBridgeStatus);
-      this.flowLayoutPanel1.Controls.Add(this.textBox1);
       this.flowLayoutPanel1.Controls.Add(this.splitContainerCurrentRail);
       this.flowLayoutPanel1.Controls.Add(this.buttonTest);
       this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanelNumberOfRails);
+      this.flowLayoutPanel1.Controls.Add(this.splitContainerForceTurn);
       this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
       this.flowLayoutPanel1.Location = new System.Drawing.Point(17, 165);
       this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -280,16 +287,9 @@ namespace T3
       this.labelBridgeStatus.TabIndex = 15;
       this.labelBridgeStatus.Text = "Status";
       // 
-      // textBox1
-      // 
-      this.textBox1.Location = new System.Drawing.Point(3, 48);
-      this.textBox1.Name = "textBox1";
-      this.textBox1.Size = new System.Drawing.Size(100, 20);
-      this.textBox1.TabIndex = 21;
-      // 
       // splitContainerCurrentRail
       // 
-      this.splitContainerCurrentRail.Location = new System.Drawing.Point(3, 74);
+      this.splitContainerCurrentRail.Location = new System.Drawing.Point(3, 48);
       this.splitContainerCurrentRail.Name = "splitContainerCurrentRail";
       // 
       // splitContainerCurrentRail.Panel1
@@ -323,7 +323,7 @@ namespace T3
       // 
       // buttonTest
       // 
-      this.buttonTest.Location = new System.Drawing.Point(3, 116);
+      this.buttonTest.Location = new System.Drawing.Point(3, 90);
       this.buttonTest.Name = "buttonTest";
       this.buttonTest.Size = new System.Drawing.Size(75, 23);
       this.buttonTest.TabIndex = 22;
@@ -336,7 +336,7 @@ namespace T3
       this.flowLayoutPanelNumberOfRails.Controls.Add(this.label8);
       this.flowLayoutPanelNumberOfRails.Controls.Add(this.numericUpDownNumberOfRails);
       this.flowLayoutPanelNumberOfRails.Controls.Add(this.buttonCreateRails);
-      this.flowLayoutPanelNumberOfRails.Location = new System.Drawing.Point(3, 145);
+      this.flowLayoutPanelNumberOfRails.Location = new System.Drawing.Point(3, 119);
       this.flowLayoutPanelNumberOfRails.Name = "flowLayoutPanelNumberOfRails";
       this.flowLayoutPanelNumberOfRails.Size = new System.Drawing.Size(284, 43);
       this.flowLayoutPanelNumberOfRails.TabIndex = 23;
@@ -384,6 +384,42 @@ namespace T3
       this.buttonCreateRails.UseVisualStyleBackColor = true;
       this.buttonCreateRails.Click += new System.EventHandler(this.ButtonCreateRails_Click);
       // 
+      // splitContainerForceTurn
+      // 
+      this.splitContainerForceTurn.Location = new System.Drawing.Point(3, 168);
+      this.splitContainerForceTurn.Name = "splitContainerForceTurn";
+      // 
+      // splitContainerForceTurn.Panel1
+      // 
+      this.splitContainerForceTurn.Panel1.Controls.Add(this.buttonForceTurnCW);
+      // 
+      // splitContainerForceTurn.Panel2
+      // 
+      this.splitContainerForceTurn.Panel2.Controls.Add(this.buttonForceTurnCCW);
+      this.splitContainerForceTurn.Size = new System.Drawing.Size(279, 24);
+      this.splitContainerForceTurn.SplitterDistance = 137;
+      this.splitContainerForceTurn.TabIndex = 24;
+      // 
+      // buttonForceTurnCW
+      // 
+      this.buttonForceTurnCW.Location = new System.Drawing.Point(0, 0);
+      this.buttonForceTurnCW.Name = "buttonForceTurnCW";
+      this.buttonForceTurnCW.Size = new System.Drawing.Size(134, 23);
+      this.buttonForceTurnCW.TabIndex = 0;
+      this.buttonForceTurnCW.Text = "Vynuť otočení CW";
+      this.buttonForceTurnCW.UseVisualStyleBackColor = true;
+      this.buttonForceTurnCW.Click += new System.EventHandler(this.ButtonForceTurnCW_Click);
+      // 
+      // buttonForceTurnCCW
+      // 
+      this.buttonForceTurnCCW.Location = new System.Drawing.Point(1, 1);
+      this.buttonForceTurnCCW.Name = "buttonForceTurnCCW";
+      this.buttonForceTurnCCW.Size = new System.Drawing.Size(134, 23);
+      this.buttonForceTurnCCW.TabIndex = 0;
+      this.buttonForceTurnCCW.Text = "Vynuť otočení CCW";
+      this.buttonForceTurnCCW.UseVisualStyleBackColor = true;
+      this.buttonForceTurnCCW.Click += new System.EventHandler(this.ButtonForceTurnCCW_Click);
+      // 
       // T3
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -393,8 +429,9 @@ namespace T3
       this.Name = "T3";
       this.Text = "T3";
       this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.T3_FormClosing);
-      this.tableLayoutPanel1.ResumeLayout(false);
-      this.tableLayoutPanel1.PerformLayout();
+      this.Load += new System.EventHandler(this.T3_Load);
+      this.tableLayoutPanelConnectionSettings.ResumeLayout(false);
+      this.tableLayoutPanelConnectionSettings.PerformLayout();
       this.splitContainerMain.Panel1.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
       this.splitContainerMain.ResumeLayout(false);
@@ -409,6 +446,10 @@ namespace T3
       this.flowLayoutPanelNumberOfRails.ResumeLayout(false);
       this.flowLayoutPanelNumberOfRails.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumberOfRails)).EndInit();
+      this.splitContainerForceTurn.Panel1.ResumeLayout(false);
+      this.splitContainerForceTurn.Panel2.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.splitContainerForceTurn)).EndInit();
+      this.splitContainerForceTurn.ResumeLayout(false);
       this.ResumeLayout(false);
 
     }
@@ -427,7 +468,7 @@ namespace T3
     private System.Windows.Forms.Label label4;
     private System.Windows.Forms.Label label5;
     private System.Windows.Forms.Label label6;
-    private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+    private System.Windows.Forms.TableLayoutPanel tableLayoutPanelConnectionSettings;
     private System.Windows.Forms.SplitContainer splitContainerMain;
     private System.Windows.Forms.Label labelBridgeStatus;
     private System.Windows.Forms.Label labelCurrentRail;
@@ -435,7 +476,6 @@ namespace T3
     private System.Windows.Forms.Button buttonSetCurrentRail;
     private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     private System.Windows.Forms.SplitContainer splitContainerCurrentRail;
-    private System.Windows.Forms.TextBox textBox1;
     private System.Windows.Forms.Label labelOutStatus;
     private System.Windows.Forms.Label labelInStatus;
     private System.Windows.Forms.Button buttonTest;
@@ -443,6 +483,9 @@ namespace T3
     private System.Windows.Forms.Label label8;
     private System.Windows.Forms.NumericUpDown numericUpDownNumberOfRails;
     private System.Windows.Forms.Button buttonCreateRails;
+    private System.Windows.Forms.SplitContainer splitContainerForceTurn;
+    private System.Windows.Forms.Button buttonForceTurnCW;
+    private System.Windows.Forms.Button buttonForceTurnCCW;
   }
 }
 

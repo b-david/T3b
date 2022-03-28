@@ -164,10 +164,27 @@ namespace T3
       catch (Exception ex) { MessageBox.Show(ex.ToString()); }
 
     }
-
-    public void DeletePanel2Buttons()
+    /// <summary>
+    /// Metoda vymaze vsechny ovladaci prvky ve druhem panelu hlavniho panelu.
+    /// </summary>
+    private void DeletePanel2Buttons()
     {
       splitContainerMain.Panel2.Controls.Clear();
+    }
+
+    private void ButtonForceTurnCCW_Click(object sender, EventArgs e)
+    {
+      Tt.ForceTurn(TurnDirection.CCW);
+    }
+
+    private void ButtonForceTurnCW_Click(object sender, EventArgs e)
+    {
+      Tt.ForceTurn(TurnDirection.CW);
+    }
+
+    private void T3_Load(object sender, EventArgs e)
+    {
+      CreateRailButtons();
     }
   }
 }
