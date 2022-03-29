@@ -91,8 +91,7 @@ namespace T3
     {
       Image img = splitContainerMain.Panel2.BackgroundImage;
       img.RotateFlip(RotateFlipType.Rotate90FlipNone);
-      splitContainerMain.Panel2.BackgroundImage = img;
-      
+      splitContainerMain.Panel2.BackgroundImage = img;      
     }
     /// Jeste neimplementovano.
     private void ButtonSetCurrentRail_Click(object sender, EventArgs e)

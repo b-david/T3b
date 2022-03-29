@@ -46,6 +46,8 @@ namespace T3
       this.labelOutStatus = new System.Windows.Forms.Label();
       this.labelInStatus = new System.Windows.Forms.Label();
       this.splitContainerMain = new System.Windows.Forms.SplitContainer();
+      this.flowLayoutOptions = new System.Windows.Forms.FlowLayoutPanel();
+      this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.buttonSetCurrentRail = new System.Windows.Forms.Button();
       this.labelBridgeStatus = new System.Windows.Forms.Label();
       this.splitContainerCurrentRail = new System.Windows.Forms.SplitContainer();
@@ -59,12 +61,12 @@ namespace T3
       this.splitContainerForceTurn = new System.Windows.Forms.SplitContainer();
       this.buttonForceTurnCW = new System.Windows.Forms.Button();
       this.buttonForceTurnCCW = new System.Windows.Forms.Button();
-      this.flowLayoutOptions = new System.Windows.Forms.FlowLayoutPanel();
-      this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.tableLayoutPanelConnectionSettings.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
       this.splitContainerMain.Panel1.SuspendLayout();
       this.splitContainerMain.SuspendLayout();
+      this.flowLayoutOptions.SuspendLayout();
+      this.tableLayoutPanel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerCurrentRail)).BeginInit();
       this.splitContainerCurrentRail.Panel1.SuspendLayout();
       this.splitContainerCurrentRail.Panel2.SuspendLayout();
@@ -75,8 +77,6 @@ namespace T3
       this.splitContainerForceTurn.Panel1.SuspendLayout();
       this.splitContainerForceTurn.Panel2.SuspendLayout();
       this.splitContainerForceTurn.SuspendLayout();
-      this.flowLayoutOptions.SuspendLayout();
-      this.tableLayoutPanel1.SuspendLayout();
       this.SuspendLayout();
       // 
       // buttonConnectIn
@@ -249,6 +249,45 @@ namespace T3
       this.splitContainerMain.SplitterDistance = 324;
       this.splitContainerMain.TabIndex = 19;
       // 
+      // flowLayoutOptions
+      // 
+      this.flowLayoutOptions.Controls.Add(this.tableLayoutPanel1);
+      this.flowLayoutOptions.Controls.Add(this.tableLayoutPanelConnectionSettings);
+      this.flowLayoutOptions.Controls.Add(this.buttonSetCurrentRail);
+      this.flowLayoutOptions.Controls.Add(this.labelBridgeStatus);
+      this.flowLayoutOptions.Controls.Add(this.splitContainerCurrentRail);
+      this.flowLayoutOptions.Controls.Add(this.buttonTest);
+      this.flowLayoutOptions.Controls.Add(this.flowLayoutPanelNumberOfRails);
+      this.flowLayoutOptions.Controls.Add(this.splitContainerForceTurn);
+      this.flowLayoutOptions.Location = new System.Drawing.Point(3, 3);
+      this.flowLayoutOptions.Name = "flowLayoutOptions";
+      this.flowLayoutOptions.Size = new System.Drawing.Size(318, 664);
+      this.flowLayoutOptions.TabIndex = 0;
+      // 
+      // tableLayoutPanel1
+      // 
+      this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.Control;
+      this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
+      this.tableLayoutPanel1.ColumnCount = 4;
+      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+      this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
+      this.tableLayoutPanel1.Controls.Add(this.textBoxInIp, 2, 0);
+      this.tableLayoutPanel1.Controls.Add(this.buttonConnectIn, 3, 0);
+      this.tableLayoutPanel1.Controls.Add(this.label2, 1, 1);
+      this.tableLayoutPanel1.Controls.Add(this.textBoxInPort, 2, 1);
+      this.tableLayoutPanel1.Controls.Add(this.labelInStatus, 3, 1);
+      this.tableLayoutPanel1.Controls.Add(this.label5, 0, 0);
+      this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+      this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+      this.tableLayoutPanel1.RowCount = 2;
+      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+      this.tableLayoutPanel1.Size = new System.Drawing.Size(280, 61);
+      this.tableLayoutPanel1.TabIndex = 0;
+      // 
       // buttonSetCurrentRail
       // 
       this.buttonSetCurrentRail.Location = new System.Drawing.Point(3, 131);
@@ -401,45 +440,6 @@ namespace T3
       this.buttonForceTurnCCW.UseVisualStyleBackColor = true;
       this.buttonForceTurnCCW.Click += new System.EventHandler(this.ButtonForceTurnCCW_Click);
       // 
-      // flowLayoutOptions
-      // 
-      this.flowLayoutOptions.Controls.Add(this.tableLayoutPanel1);
-      this.flowLayoutOptions.Controls.Add(this.tableLayoutPanelConnectionSettings);
-      this.flowLayoutOptions.Controls.Add(this.buttonSetCurrentRail);
-      this.flowLayoutOptions.Controls.Add(this.labelBridgeStatus);
-      this.flowLayoutOptions.Controls.Add(this.splitContainerCurrentRail);
-      this.flowLayoutOptions.Controls.Add(this.buttonTest);
-      this.flowLayoutOptions.Controls.Add(this.flowLayoutPanelNumberOfRails);
-      this.flowLayoutOptions.Controls.Add(this.splitContainerForceTurn);
-      this.flowLayoutOptions.Location = new System.Drawing.Point(3, 3);
-      this.flowLayoutOptions.Name = "flowLayoutOptions";
-      this.flowLayoutOptions.Size = new System.Drawing.Size(318, 664);
-      this.flowLayoutOptions.TabIndex = 0;
-      // 
-      // tableLayoutPanel1
-      // 
-      this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.Control;
-      this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
-      this.tableLayoutPanel1.ColumnCount = 4;
-      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-      this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
-      this.tableLayoutPanel1.Controls.Add(this.textBoxInIp, 2, 0);
-      this.tableLayoutPanel1.Controls.Add(this.buttonConnectIn, 3, 0);
-      this.tableLayoutPanel1.Controls.Add(this.label2, 1, 1);
-      this.tableLayoutPanel1.Controls.Add(this.textBoxInPort, 2, 1);
-      this.tableLayoutPanel1.Controls.Add(this.labelInStatus, 3, 1);
-      this.tableLayoutPanel1.Controls.Add(this.label5, 0, 0);
-      this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-      this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-      this.tableLayoutPanel1.RowCount = 2;
-      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      this.tableLayoutPanel1.Size = new System.Drawing.Size(280, 61);
-      this.tableLayoutPanel1.TabIndex = 0;
-      // 
       // T3
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -456,6 +456,10 @@ namespace T3
       this.splitContainerMain.Panel1.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
       this.splitContainerMain.ResumeLayout(false);
+      this.flowLayoutOptions.ResumeLayout(false);
+      this.flowLayoutOptions.PerformLayout();
+      this.tableLayoutPanel1.ResumeLayout(false);
+      this.tableLayoutPanel1.PerformLayout();
       this.splitContainerCurrentRail.Panel1.ResumeLayout(false);
       this.splitContainerCurrentRail.Panel1.PerformLayout();
       this.splitContainerCurrentRail.Panel2.ResumeLayout(false);
@@ -469,10 +473,6 @@ namespace T3
       this.splitContainerForceTurn.Panel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerForceTurn)).EndInit();
       this.splitContainerForceTurn.ResumeLayout(false);
-      this.flowLayoutOptions.ResumeLayout(false);
-      this.flowLayoutOptions.PerformLayout();
-      this.tableLayoutPanel1.ResumeLayout(false);
-      this.tableLayoutPanel1.PerformLayout();
       this.ResumeLayout(false);
 
     }
