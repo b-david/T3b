@@ -87,6 +87,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="img\ai files_T3-tocna.png" />
     <Content Include="img\arrows\StatusIndicator_CCWAction.png" />
     <Content Include="img\arrows\StatusIndicator_CWAction.png" />
     <Content Include="img\arrows\StatusIndicator_NoAction.png" />

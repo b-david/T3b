@@ -89,25 +89,10 @@ namespace T3
     /// <param name="e"></param>
     private void Rotate_Click(object sender, EventArgs e)
     {
-      //Image img = pictureBoxTurntable.Image;
-      //img.RotateFlip(RotateFlipType.Rotate90FlipNone);
-      //pictureBoxTurntable.Image = img;
-
-      //pridani tlacitka
-      for (int i = 0; i < 1; i++)
-      {
-
-      }
-      Button tlacidlo = new Button
-      {
-        Text = "Nove tlacitko",
-        Location = new Point(10, 10),
-        Size = new Size(50, 100),
-      };
-
-      //pictureBoxTurntable.Controls.Add(tlacidlo);
-      //Controls.Add(tlacidlo);
-
+      Image img = splitContainerMain.Panel2.BackgroundImage;
+      img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+      splitContainerMain.Panel2.BackgroundImage = img;
+      
     }
     /// Jeste neimplementovano.
     private void ButtonSetCurrentRail_Click(object sender, EventArgs e)
