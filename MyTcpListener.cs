@@ -111,7 +111,7 @@ namespace T3
                    catch (Exception e)
                    {
                      Log.Error(e.ToString());
-                     MessageBox.Show("Došlo k chybě při naslouchání.");
+                     MessageBox.Show("Došlo k v naslouchacim vlakne.");
                      break;
                    }
 
@@ -126,6 +126,7 @@ namespace T3
       {
         Log.Error(e.ToString());
         MessageBox.Show("Chyba pri spousteni naslouchaciho vlakna");
+        return ConnectionStatus.Error;
       }
       
       return ConnectionStatus.Connected;

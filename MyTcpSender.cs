@@ -13,6 +13,7 @@ namespace T3
     {
       try
       {
+        Log.Verbose("Vytvarim TCP klienta.");
         tcpClient = new TcpClient(ip, port);
       }
       catch(ArgumentNullException e)

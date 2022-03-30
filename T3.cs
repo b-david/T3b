@@ -74,7 +74,8 @@ namespace T3
 
     private void Stop_Click(object sender, EventArgs e)
     {
-      throw new NotImplementedException();
+      Log.Information("Zmacknuto tlacitko zastaveni.");
+      Tt.StopTurntable();
     }
 
     /**

@@ -187,6 +187,7 @@ namespace T3
     {
       Log.Information("Otoceni na kolej c. " + railNumber.ToString());
       TurntableData.Instance.WantedRail = railNumber;
+      // nastaveni potrebnych dat
       byte[] data = { railNumber};
       _senderOut.SendData(data);
     }

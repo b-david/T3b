@@ -7,6 +7,8 @@ using Serilog;
  * - Threading
  *    https://stackoverflow.com/questions/8999373/passing-data-between-threads-in-c-sharp
  *    zdroj https://www.albahari.com/threading/
+ * - mit tridu pro status, ktera bude navazana na GUI
+ * - tlacitka connect se predelaji na disconnect?
  * */
 namespace T3
 {

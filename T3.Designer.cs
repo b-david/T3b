@@ -53,7 +53,6 @@ namespace T3
       this.splitContainerCurrentRail = new System.Windows.Forms.SplitContainer();
       this.label7 = new System.Windows.Forms.Label();
       this.labelCurrentRail = new System.Windows.Forms.Label();
-      this.buttonTest = new System.Windows.Forms.Button();
       this.flowLayoutPanelNumberOfRails = new System.Windows.Forms.FlowLayoutPanel();
       this.label8 = new System.Windows.Forms.Label();
       this.numericUpDownNumberOfRails = new System.Windows.Forms.NumericUpDown();
@@ -257,7 +256,6 @@ namespace T3
       this.flowLayoutOptions.Controls.Add(this.buttonSetCurrentRail);
       this.flowLayoutOptions.Controls.Add(this.labelBridgeStatus);
       this.flowLayoutOptions.Controls.Add(this.splitContainerCurrentRail);
-      this.flowLayoutOptions.Controls.Add(this.buttonTest);
       this.flowLayoutOptions.Controls.Add(this.flowLayoutPanelNumberOfRails);
       this.flowLayoutOptions.Controls.Add(this.splitContainerForceTurn);
       this.flowLayoutOptions.Controls.Add(this.buttonStop);
@@ -343,22 +341,12 @@ namespace T3
       this.labelCurrentRail.TabIndex = 19;
       this.labelCurrentRail.Text = "label8";
       // 
-      // buttonTest
-      // 
-      this.buttonTest.Location = new System.Drawing.Point(3, 218);
-      this.buttonTest.Name = "buttonTest";
-      this.buttonTest.Size = new System.Drawing.Size(75, 23);
-      this.buttonTest.TabIndex = 22;
-      this.buttonTest.Text = "test button";
-      this.buttonTest.UseVisualStyleBackColor = true;
-      this.buttonTest.Click += new System.EventHandler(this.Rotate_Click);
-      // 
       // flowLayoutPanelNumberOfRails
       // 
       this.flowLayoutPanelNumberOfRails.Controls.Add(this.label8);
       this.flowLayoutPanelNumberOfRails.Controls.Add(this.numericUpDownNumberOfRails);
       this.flowLayoutPanelNumberOfRails.Controls.Add(this.buttonCreateRails);
-      this.flowLayoutPanelNumberOfRails.Location = new System.Drawing.Point(3, 247);
+      this.flowLayoutPanelNumberOfRails.Location = new System.Drawing.Point(3, 218);
       this.flowLayoutPanelNumberOfRails.Name = "flowLayoutPanelNumberOfRails";
       this.flowLayoutPanelNumberOfRails.Size = new System.Drawing.Size(280, 29);
       this.flowLayoutPanelNumberOfRails.TabIndex = 23;
@@ -408,7 +396,7 @@ namespace T3
       // 
       // splitContainerForceTurn
       // 
-      this.splitContainerForceTurn.Location = new System.Drawing.Point(3, 282);
+      this.splitContainerForceTurn.Location = new System.Drawing.Point(3, 253);
       this.splitContainerForceTurn.Name = "splitContainerForceTurn";
       // 
       // splitContainerForceTurn.Panel1
@@ -444,7 +432,7 @@ namespace T3
       // 
       // buttonStop
       // 
-      this.buttonStop.Location = new System.Drawing.Point(3, 312);
+      this.buttonStop.Location = new System.Drawing.Point(3, 283);
       this.buttonStop.Name = "buttonStop";
       this.buttonStop.Size = new System.Drawing.Size(75, 23);
       this.buttonStop.TabIndex = 25;
@@ -512,7 +500,6 @@ namespace T3
     private System.Windows.Forms.SplitContainer splitContainerCurrentRail;
     private System.Windows.Forms.Label labelOutStatus;
     private System.Windows.Forms.Label labelInStatus;
-    private System.Windows.Forms.Button buttonTest;
     private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelNumberOfRails;
     private System.Windows.Forms.Label label8;
     private System.Windows.Forms.NumericUpDown numericUpDownNumberOfRails;
