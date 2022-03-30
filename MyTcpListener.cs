@@ -3,21 +3,19 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Windows.Forms;
-
+using Serilog;
 namespace T3
 {
   public class MyTcpListener
   {
-    // Predelat na metodu pozastavujici naslouchani.
-    
-    private TcpListener tcpListener;
-    private IPAddress ipAddress;
-    private int port;
-    private Thread tcpListenerThread;
+    private TcpListener _tcpListener;
+    private IPAddress _ipAddress;
+    private int _port;
+    private Thread _tcpListenerThread;
 
     private ConnectionStatus _status;
 
-    
+
     /** <summary> Konstruktor.
      * <param name="ip">Retezec cilove adresy.</param>
      * <param name="port">Cislo ciloveho portu.</param>
@@ -25,13 +23,25 @@ namespace T3
      * */
     public MyTcpListener(string ip, int port)
     {
-      
-      ipAddress = IPAddress.Parse(ip);
-      this.port = port;
       try
       {
-        var endpoint = new IPEndPoint(IPAddress.Parse(ip), port);
-        tcpListener = new TcpListener(endpoint);
+        _ipAddress = IPAddress.Parse(ip);
+      }
+      catch (ArgumentNullException e)
+      {
+        Log.Error(e.ToString());
+      }
+      catch (FormatException e)
+      {
+        Log.Error(e.ToString());
+        MessageBox.Show("Chyba formatu IP adresy vstupu.");
+      }
+
+      this._port = port;
+      try
+      {
+        var endpoint = new IPEndPoint(_ipAddress, port);
+        _tcpListener = new TcpListener(endpoint);
         _status = ConnectionStatus.Connecting;
       }
       catch (Exception e)
@@ -40,8 +50,8 @@ namespace T3
       }
     }
 
-    
-    public ConnectionStatus Status { get => _status;}
+
+    public ConnectionStatus Status { get => _status; }
 
     /** <summary> 
      * Metoda vytvoří vlákno, které naslouchá na portu.     
@@ -49,14 +59,14 @@ namespace T3
      * */
     public void StartTcpListenerThread()
     {
-      if (tcpListener != null)
+      if (_tcpListener != null)
       {
-        tcpListener.Stop();
+        _tcpListener.Stop();
       }
-      tcpListener = new TcpListener(ipAddress, port);      
+      _tcpListener = new TcpListener(_ipAddress, _port);
       try
       {
-        tcpListener.Start();
+        _tcpListener.Start();
       }
       catch (Exception e)
       {
@@ -70,7 +80,7 @@ namespace T3
                    try
                    {
                      var bytes = new byte[16];
-                     var currentConnection = tcpListener.AcceptTcpClient();
+                     var currentConnection = _tcpListener.AcceptTcpClient();
                      var stream = currentConnection.GetStream();
                      var numBytesReadFromStream = stream.Read(bytes, 0, bytes.Length);
                      string str = String.Join(" ", bytes);
@@ -85,8 +95,8 @@ namespace T3
 
                  }
                });
-      tcpListenerThread = thread;
-      tcpListenerThread.Start();
+      _tcpListenerThread = thread;
+      _tcpListenerThread.Start();
       _status = ConnectionStatus.Connected;
     }
     /**
@@ -98,14 +108,14 @@ namespace T3
     {
       try
       {
-        tcpListenerThread.Interrupt();
-        tcpListener.Stop();        
+        _tcpListenerThread.Interrupt();
+        _tcpListener.Stop();
       }
       catch (Exception e)
       {
         MessageBox.Show(e.ToString());
       }
-    }    
+    }
 
   }
 }

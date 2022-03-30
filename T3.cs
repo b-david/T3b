@@ -72,17 +72,7 @@ namespace T3
       Tt.TurnToRail(Byte.Parse(b.Text));
     }
 
-    private void TurnLeft_Click(object sender, EventArgs e)
-    {
-      throw new NotImplementedException();
-    }
-
     private void Stop_Click(object sender, EventArgs e)
-    {
-      throw new NotImplementedException();
-    }
-
-    private void TurnRight_Click(object sender, EventArgs e)
     {
       throw new NotImplementedException();
     }
@@ -198,6 +188,15 @@ namespace T3
       // vytvoreni kolejovych tlacitek
       Log.Information("Stisknuto tlacitko vytvoreni koleji.");
       CreateRailButtons();
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ButtonStop_Click(object sender, EventArgs e)
+    {
+      Tt.StopTurntable();
     }
   }
 }

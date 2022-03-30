@@ -7,12 +7,23 @@ using System.Threading.Tasks;
 
 namespace T3
 {
+  public enum TurnDirection
+  {
+    [Description("Zadny smer")]
+    None = 0,
+    [Description("Po smeru hodinovych rucicek")]
+    CW,
+    [Description("Proti smeru hodinovych rucicek")]
+    CCW
+  }
   public enum BridgeStatus
   {
     [Description("Stav nenastaven")]
     NotSet = 0,
-    [Description("Zastaveno")]
-    Stopped,
+    [Description("Stopnuto")]
+    Halted,
+    [Description("Na pozici")]
+    Turned,
     [Description("Otáčí se")]
     Turning,
     [Description("Chyba")]
@@ -46,6 +57,14 @@ namespace T3
     }
 
     public static string ToDescriptionString(this ConnectionStatus val)
+    {
+      DescriptionAttribute[] attributes = (DescriptionAttribute[])val
+         .GetType()
+         .GetField(val.ToString())
+         .GetCustomAttributes(typeof(DescriptionAttribute), false);
+      return attributes.Length > 0 ? attributes[0].Description : string.Empty;
+    }
+    public static string ToDescriptionString(this TurnDirection val)
     {
       DescriptionAttribute[] attributes = (DescriptionAttribute[])val
          .GetType()

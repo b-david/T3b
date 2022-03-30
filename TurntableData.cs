@@ -10,12 +10,13 @@ namespace T3
   {
     private static readonly Lazy<TurntableData> lazy =
         new Lazy<TurntableData>(() => new TurntableData());
-    
+
 
     // 
+    private byte _numberOfRails;
     private byte _currentRail;
     private byte _wantedRail;
-    private BridgeStatus _bridgeStatus;
+    private BridgeStatus _bridgeStatus;    
 
     public static TurntableData Instance { get { return lazy.Value; } }
 
@@ -26,5 +27,6 @@ namespace T3
     public byte CurrentRail { get => _currentRail; }
     public byte WantedRail { set => _wantedRail = value; }
     public BridgeStatus BridgeStatus { get => _bridgeStatus; }
+    public byte NumberOfRails { get => _numberOfRails; set => _numberOfRails = value; }
   }
 }

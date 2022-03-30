@@ -4,11 +4,7 @@ using Serilog;
 namespace T3
 {
 
-  public enum TurnDirection
-  {
-    CW,
-    CCW
-  }
+
 
   public class TurnTable : INotifyPropertyChanged
   {
@@ -54,7 +50,7 @@ namespace T3
       }
     }
 
-    public string CurrentRailLocationString { get =>"dude"; }
+    public string CurrentRailLocationString { get => TurntableData.Instance.CurrentRail.ToString(); }
 
     // Svazani GUI prvku s vlastnostmi.
 
@@ -124,6 +120,7 @@ namespace T3
     public void ConnectIn()
     {
       Log.Verbose("Vytvoreni MyTcpListeneru.");
+      if (ListenerIn != null) DisconnectListener();
       try
       {
         ListenerIn = new MyTcpListener(IpIn, Int32.Parse(PortIn));
@@ -150,6 +147,7 @@ namespace T3
     public void ConnectOut()
     {
       Log.Information("Zapnuti pripojeni na " + IpOut + ":" + PortOut);
+      if (SenderOut != null) DisconnectSender();
       try
       {
         SenderOut = new MyTcpSender(IpOut, int.Parse(PortOut));
@@ -173,11 +171,8 @@ namespace T3
      * */
     public void TurnToRail(byte railNumber)
     {
-      Log.Information("Otoceni na kolej c. "+railNumber.ToString());
-
-      
-     
-      
+      Log.Information("Otoceni na kolej c. " + railNumber.ToString());
+      TurntableData.Instance.WantedRail = railNumber;
     }
 
     /// <summary>
@@ -187,7 +182,8 @@ namespace T3
     /// #TODO vymyslet, jak to udelat, aby se zmena neprojevila na vnitrni strukture.
     public void ForceTurn(TurnDirection direction)
     {
-      throw new NotImplementedException();
+      Log.Information("Vynucuji otaceni smerem " + direction.ToDescriptionString());
+
     }
 
     /**
@@ -202,7 +198,6 @@ namespace T3
       {
         _senderOut.SendData(data);
       }
-
     }
     /**
      * <summary>
@@ -211,6 +206,7 @@ namespace T3
      * */
     private void DisconnectListener()
     {
+      Log.Information("Odpojuji pripojeni vstupu.");
       if (ListenerIn != null) ListenerIn.StopListenerThread();
     }
 
@@ -219,6 +215,7 @@ namespace T3
      * */
     private void DisconnectSender()
     {
+      Log.Information("Odpojuji pripojeni vystupu.");
       if (SenderOut != null) SenderOut.CloseConnection();
     }
     /**
@@ -226,6 +223,7 @@ namespace T3
      * */
     public void DisconnectAll()
     {
+      Log.Information("Odpojuji vstup i vystup.");
       DisconnectListener();
       DisconnectSender();
     }
@@ -236,9 +234,16 @@ namespace T3
     /// <param name="numberOfRails">Celkovy pocet koleji.</param>
     public void setNumberOfRails(byte numberOfRails)
     {
-      _numberOfRails = numberOfRails;
+      Log.Information("Nastavuji celkovy pocet koleji na " + numberOfRails.ToString());
+      TurntableData.Instance.NumberOfRails = numberOfRails;
     }
-
+    /// <summary>
+    /// Metoda zastavi otaceni tocny.
+    /// </summary>
+    public void StopTurntable()
+    {
+      Log.Information("Zastavuji tocnu.");
+    }
     /// <summary>
     /// Oblast umoznujici propojeni GUI prvku s vlastnostmi tridy.
     /// </summary>

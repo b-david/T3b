@@ -61,6 +61,7 @@ namespace T3
       this.splitContainerForceTurn = new System.Windows.Forms.SplitContainer();
       this.buttonForceTurnCW = new System.Windows.Forms.Button();
       this.buttonForceTurnCCW = new System.Windows.Forms.Button();
+      this.buttonStop = new System.Windows.Forms.Button();
       this.tableLayoutPanelConnectionSettings.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
       this.splitContainerMain.Panel1.SuspendLayout();
@@ -259,6 +260,7 @@ namespace T3
       this.flowLayoutOptions.Controls.Add(this.buttonTest);
       this.flowLayoutOptions.Controls.Add(this.flowLayoutPanelNumberOfRails);
       this.flowLayoutOptions.Controls.Add(this.splitContainerForceTurn);
+      this.flowLayoutOptions.Controls.Add(this.buttonStop);
       this.flowLayoutOptions.Location = new System.Drawing.Point(3, 3);
       this.flowLayoutOptions.Name = "flowLayoutOptions";
       this.flowLayoutOptions.Size = new System.Drawing.Size(318, 664);
@@ -440,6 +442,16 @@ namespace T3
       this.buttonForceTurnCCW.UseVisualStyleBackColor = true;
       this.buttonForceTurnCCW.Click += new System.EventHandler(this.ButtonForceTurnCCW_Click);
       // 
+      // buttonStop
+      // 
+      this.buttonStop.Location = new System.Drawing.Point(3, 312);
+      this.buttonStop.Name = "buttonStop";
+      this.buttonStop.Size = new System.Drawing.Size(75, 23);
+      this.buttonStop.TabIndex = 25;
+      this.buttonStop.Text = "Stop";
+      this.buttonStop.UseVisualStyleBackColor = true;
+      this.buttonStop.Click += new System.EventHandler(this.ButtonStop_Click);
+      // 
       // T3
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -510,6 +522,7 @@ namespace T3
     private System.Windows.Forms.Button buttonForceTurnCCW;
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     private System.Windows.Forms.FlowLayoutPanel flowLayoutOptions;
+    private System.Windows.Forms.Button buttonStop;
   }
 }
 

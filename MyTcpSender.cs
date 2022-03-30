@@ -2,22 +2,34 @@
 using System.Net.Sockets;
 using System.Windows;
 using System.Windows.Forms;
+using Serilog;
 
 namespace T3
 {
   class MyTcpSender
   {
-    private TcpClient tcpClient;
+    private TcpClient tcpClient;    
     public MyTcpSender(string ip, int port)
     {
       try
       {
         tcpClient = new TcpClient(ip, port);
       }
-      catch(Exception e)
+      catch(ArgumentNullException e)
       {
-        MessageBox.Show(e.ToString());
-      }      
+        Log.Error("Chyba pripojeni vystupniho TCP klienta "+e.ToString());        
+        MessageBox.Show("Null reference v hodnotach pro pripojeni vystupu.");
+      }
+      catch (ArgumentOutOfRangeException e)
+      {
+        Log.Error("Chyba pripojeni vystupniho TCP klienta " + e.ToString());
+        MessageBox.Show("Hodnoty pro pripojeni vystupu jsou mimo rozsah.");
+      }
+      catch (SocketException e)
+      {
+        Log.Error("Chyba pripojeni vystupniho TCP klienta " + e.ToString());
+        MessageBox.Show("Chyba soketu.");
+      }
     }
     /**
      * <summary>
@@ -29,11 +41,23 @@ namespace T3
     {
       try
       {
+        Log.Information("Odesilam data "+data.ToString());
         tcpClient.Client.Send(data);        
       }
-      catch (Exception e)
+      catch (ArgumentNullException e)
       {
+        Log.Error("Doslo k chybe behem odesilani dat. "+e.ToString());
         MessageBox.Show(e.ToString());        
+      }
+      catch (SocketException e)
+      {
+        Log.Error("Doslo k chybe behem odesilani dat. " + e.ToString());
+        MessageBox.Show(e.ToString());
+      }
+      catch (ObjectDisposedException e)
+      {
+        Log.Error("Doslo k chybe behem odesilani dat. " + e.ToString());
+        MessageBox.Show(e.ToString());
       }
     }
     
@@ -44,6 +68,7 @@ namespace T3
      * **/
     public void CloseConnection()
     {
+      Log.Information("Uzavirani pripojeni vystupu.");
       if(tcpClient!=null) tcpClient.Close();      
     }
   }
