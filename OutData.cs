@@ -17,6 +17,8 @@ namespace T3
     private bool _outActivity;
     private bool _outCW;
     private bool _outCCW;
+    
+
     private OutData()
     {
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Serilog;
 /*
  * TODO List:
  * - TurnTable - pridat INotifyProperty changed
@@ -17,9 +18,19 @@ namespace T3
     [STAThread]
     static void Main()
     {
+      // nastavenmi logovani      
+      Log.Logger = new LoggerConfiguration()
+        .WriteTo.Console()
+        .WriteTo.File("log-" + DateTime.Now.ToString("yyMMdd HH-mm-ss") + ".txt", 
+          outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}")
+        .CreateLogger();
+      Log.Verbose("All set up.");
+
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new T3());           
+      Application.Run(new T3());
+      // ukonceni logovani
+      Log.CloseAndFlush();
     }
   }
 }

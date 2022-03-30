@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-
+using Serilog;
 namespace T3
 {
 
@@ -12,20 +12,20 @@ namespace T3
 
   public class TurnTable : INotifyPropertyChanged
   {
+    // vstup
     private MyTcpListener _listenerIn;
+    // vystup
     private MyTcpSender _senderOut;
 
-    private OutData _outData;
-    private InData _inData;
-
     private byte _currentRailLocationNumber;
-    private byte _maxNumberOfRails;
-
+    private byte _numberOfRails;
+    // Nastaveni hodnot pro pripojeni
     private string _ipIn = "127.0.0.1";
     private string _ipOut = "127.0.0.1";
     private string _portIn = "13000";
     private string _portOut = "13002";
 
+    // Nastaveni statusu
     private ConnectionStatus _connectionInStatus = ConnectionStatus.Disconnected;
     private ConnectionStatus _connectionOutStatus = ConnectionStatus.Disconnected;
     private BridgeStatus _bridgeStatus = BridgeStatus.NotSet;
@@ -35,15 +35,13 @@ namespace T3
      * <param name="numberOfRails">Pocet pozadovanych koleji.</param>
      * </summary>
      * **/
-    public TurnTable(byte numberOfRails)
-    {            
+    public TurnTable()
+    {
       CurrentRailLocationNumber = 0;
-      _maxNumberOfRails = numberOfRails;
     }
     /// 
     /// Zapouzdreni.
-    ///     
-    public InData InData { get => _inData; set => _inData = value; }
+    ///         
     internal MyTcpListener ListenerIn { get => _listenerIn; set => _listenerIn = value; }
     internal MyTcpSender SenderOut { get => _senderOut; set => _senderOut = value; }
     public byte CurrentRailLocationNumber
@@ -56,10 +54,9 @@ namespace T3
       }
     }
 
-    public string CurrentRailLocationString
-    {
-      get => CurrentRailLocationNumber.ToString();
-    }
+    public string CurrentRailLocationString { get =>"dude"; }
+
+    // Svazani GUI prvku s vlastnostmi.
 
     public string IpIn
     {
@@ -75,7 +72,8 @@ namespace T3
     public string PortIn
     {
       get => _portIn;
-      set { _portIn = value; InvokePropertyChanged(new PropertyChangedEventArgs("PortIn")); }
+      set
+      { _portIn = value; InvokePropertyChanged(new PropertyChangedEventArgs("PortIn")); }
     }
     public string PortOut
     {
@@ -110,7 +108,7 @@ namespace T3
       }
     }
     /// 
-    /// Pro DataBinding
+    /// Zapouzdreni
     /// 
     public string ConnectionInStatusString { get => ConnectionInStatus.ToDescriptionString(); }
     public string ConnectionOutStatusString { get => ConnectionOutStatus.ToDescriptionString(); }
@@ -125,18 +123,46 @@ namespace T3
      * */
     public void ConnectIn()
     {
-      ListenerIn = new MyTcpListener(IpIn, Int32.Parse(PortIn));
+      Log.Verbose("Vytvoreni MyTcpListeneru.");
+      try
+      {
+        ListenerIn = new MyTcpListener(IpIn, Int32.Parse(PortIn));
+      }
+      catch (FormatException e)
+      {
+        Log.Error("Spatny format vstupniho portu. " + e.ToString());
+      }
+      catch (OverflowException e)
+      {
+        Log.Error("Doslo k preteceni pri prevodu vstupniho portu na Int32. " +
+        e.ToString());
+      }
+      catch (Exception e) { Log.Fatal(e.ToString()); }
+
+      Log.Information("Zapnuti naslouchani na " + IpIn + ":" + PortIn);
       ListenerIn.StartTcpListenerThread();
     }
     /**
      * <summary>
-     * Metoda pripoji tcp sender na soket nastaveny ve propojenych TextBoxech.
-     * 
+     * Metoda pripoji tcp sender na soket nastaveny ve propojenych TextBoxech.    
      * </summary>
      **/
     public void ConnectOut()
     {
-      SenderOut = new MyTcpSender(IpOut, int.Parse(PortOut));
+      Log.Information("Zapnuti pripojeni na " + IpOut + ":" + PortOut);
+      try
+      {
+        SenderOut = new MyTcpSender(IpOut, int.Parse(PortOut));
+      }
+      catch (FormatException e)
+      {
+        Log.Error("Spatny format vystupniho portu. " + e.ToString());
+      }
+      catch (OverflowException e)
+      {
+        Log.Error("Doslo k preteceni pri prevodu vystupniho portu na Int32. " + e.ToString());
+      }
+      catch (Exception e) { Log.Fatal(e.ToString()); }
     }
 
     /**
@@ -147,10 +173,13 @@ namespace T3
      * */
     public void TurnToRail(byte railNumber)
     {
-      var bArray = new byte[railNumber];
-      Send(bArray);
-      CurrentRailLocationNumber = railNumber;
+      Log.Information("Otoceni na kolej c. "+railNumber.ToString());
+
+      
+     
+      
     }
+
     /// <summary>
     /// Metoda vynuti otoceni tocny danym smerem <paramref name="direction"/>, aniz by se zmena projevila na vnitrnich hodnotach.
     /// </summary>
@@ -200,6 +229,16 @@ namespace T3
       DisconnectListener();
       DisconnectSender();
     }
+
+    /// <summary>
+    /// Metoda nastavi celkovy pocet koleji.
+    /// </summary>
+    /// <param name="numberOfRails">Celkovy pocet koleji.</param>
+    public void setNumberOfRails(byte numberOfRails)
+    {
+      _numberOfRails = numberOfRails;
+    }
+
     /// <summary>
     /// Oblast umoznujici propojeni GUI prvku s vlastnostmi tridy.
     /// </summary>
