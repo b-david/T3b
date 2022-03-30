@@ -13,7 +13,7 @@ namespace T3
     private bool _inTurningCW;
     private bool _inTurningCCW;
     private byte _inAddress;
-
+    private byte[] _rawData;
     private InData()
     {
 
@@ -33,5 +33,7 @@ namespace T3
         }
       }
     }
+
+    public byte[] RawData { get => _rawData; set => _rawData = value; }
   }
 }

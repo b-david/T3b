@@ -23,8 +23,10 @@ namespace T3
      * */
     public MyTcpListener(string ip, int port)
     {
+      // parsovani ip adresy
       try
       {
+        Log.Information("Preklad IP retezce na tridu IPAddress.");
         _ipAddress = IPAddress.Parse(ip);
       }
       catch (ArgumentNullException e)
@@ -36,18 +38,27 @@ namespace T3
         Log.Error(e.ToString());
         MessageBox.Show("Chyba formatu IP adresy vstupu.");
       }
-
+      // prirazeni portu
       this._port = port;
+
       try
       {
+        Log.Information("Vytvareni endpointu vstupu.");
         var endpoint = new IPEndPoint(_ipAddress, port);
         _tcpListener = new TcpListener(endpoint);
-        _status = ConnectionStatus.Connecting;
       }
-      catch (Exception e)
+      catch (ArgumentNullException e)
       {
-        MessageBox.Show(e.ToString());
+        Log.Error(e.ToString());
+        MessageBox.Show("Null parametr.");
       }
+      catch (ArgumentOutOfRangeException e)
+      {
+        Log.Error(e.ToString());
+        MessageBox.Show("Nejaky parametr endpointu je mimo rozsah.");
+      }
+
+      _status = ConnectionStatus.Connecting;
     }
 
 
@@ -61,18 +72,26 @@ namespace T3
     {
       if (_tcpListener != null)
       {
+        Log.Information("Zastavuji TCP Listener.");
         _tcpListener.Stop();
       }
-      _tcpListener = new TcpListener(_ipAddress, _port);
+
       try
       {
+        _tcpListener = new TcpListener(_ipAddress, _port);
         _tcpListener.Start();
       }
-      catch (Exception e)
+      catch (ArgumentNullException e)
       {
+        Log.Error(e.ToString());
         MessageBox.Show(e.ToString());
       }
-
+      catch (ArgumentOutOfRangeException e)
+      {
+        Log.Error(e.ToString());
+        MessageBox.Show(e.ToString());
+      }
+      // Vlakno pro naslouchani vstupu
       Thread thread = new Thread(() =>
                {
                  while (true)
@@ -83,13 +102,13 @@ namespace T3
                      var currentConnection = _tcpListener.AcceptTcpClient();
                      var stream = currentConnection.GetStream();
                      var numBytesReadFromStream = stream.Read(bytes, 0, bytes.Length);
-                     string str = String.Join(" ", bytes);
-                     MessageBox.Show(str);
+                     Log.Information("Prijata data " + String.Join(" ", bytes));
+
                    }
                    catch (Exception e)
                    {
-                     MessageBox.Show(e.ToString());
-
+                     Log.Error(e.ToString());
+                     MessageBox.Show("Došlo k chybě při naslouchání.");
                      break;
                    }
 
