@@ -121,6 +121,7 @@ namespace T3
     {
       Log.Verbose("Vytvoreni MyTcpListeneru.");
       if (ListenerIn != null) DisconnectListener();
+      ConnectionInStatus = ConnectionStatus.Connecting;
       try
       {
         ListenerIn = new MyTcpListener(IpIn, Int32.Parse(PortIn));
@@ -128,16 +129,20 @@ namespace T3
       catch (FormatException e)
       {
         Log.Error("Spatny format vstupniho portu. " + e.ToString());
+        ConnectionInStatus = ConnectionStatus.Error;
       }
       catch (OverflowException e)
       {
         Log.Error("Doslo k preteceni pri prevodu vstupniho portu na Int32. " +
         e.ToString());
+        ConnectionInStatus = ConnectionStatus.Error;
       }
-      catch (Exception e) { Log.Fatal(e.ToString()); }
-
+      catch (Exception e)
+      {
+        Log.Fatal(e.ToString()); ConnectionInStatus = ConnectionStatus.Error;
+      }
       Log.Information("Zapnuti naslouchani na " + IpIn + ":" + PortIn);
-      ListenerIn.StartTcpListenerThread();
+      ConnectionInStatus = ListenerIn.StartTcpListenerThread();
     }
     /**
      * <summary>
@@ -148,19 +153,28 @@ namespace T3
     {
       Log.Information("Zapnuti pripojeni na " + IpOut + ":" + PortOut);
       if (SenderOut != null) DisconnectSender();
+      ConnectionOutStatus = ConnectionStatus.Connecting;
       try
       {
         SenderOut = new MyTcpSender(IpOut, int.Parse(PortOut));
+        ConnectionOutStatus = ConnectionStatus.Connected;
       }
       catch (FormatException e)
       {
         Log.Error("Spatny format vystupniho portu. " + e.ToString());
+        ConnectionOutStatus = ConnectionStatus.Error;
       }
       catch (OverflowException e)
       {
         Log.Error("Doslo k preteceni pri prevodu vystupniho portu na Int32. " + e.ToString());
+        ConnectionOutStatus = ConnectionStatus.Error;
       }
-      catch (Exception e) { Log.Fatal(e.ToString()); }
+      catch (Exception e)
+      {
+        Log.Fatal(e.ToString());
+        ConnectionOutStatus = ConnectionStatus.Error;
+      }
+
     }
 
     /**
@@ -173,6 +187,8 @@ namespace T3
     {
       Log.Information("Otoceni na kolej c. " + railNumber.ToString());
       TurntableData.Instance.WantedRail = railNumber;
+      byte[] data = { railNumber};
+      _senderOut.SendData(data);
     }
 
     /// <summary>
@@ -208,6 +224,7 @@ namespace T3
     {
       Log.Information("Odpojuji pripojeni vstupu.");
       if (ListenerIn != null) ListenerIn.StopListenerThread();
+      ConnectionInStatus = ConnectionStatus.Disconnected;
     }
 
     /**
@@ -217,6 +234,7 @@ namespace T3
     {
       Log.Information("Odpojuji pripojeni vystupu.");
       if (SenderOut != null) SenderOut.CloseConnection();
+      ConnectionOutStatus = ConnectionStatus.Disconnected;
     }
     /**
      * Metoda odpoji vsechna vytvorena TCP pripojeni.

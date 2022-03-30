@@ -68,7 +68,7 @@ namespace T3
      * Metoda vytvoří vlákno, které naslouchá na portu.     
      * </summary>
      * */
-    public void StartTcpListenerThread()
+    public ConnectionStatus StartTcpListenerThread()
     {
       if (_tcpListener != null)
       {
@@ -78,6 +78,7 @@ namespace T3
 
       try
       {
+        Log.Information("Vytvarim TCP Listener.");
         _tcpListener = new TcpListener(_ipAddress, _port);
         _tcpListener.Start();
       }
@@ -91,19 +92,21 @@ namespace T3
         Log.Error(e.ToString());
         MessageBox.Show(e.ToString());
       }
+      Log.Information("Vytvarim vlakno k naslouchani.");
       // Vlakno pro naslouchani vstupu
+      // #TODO je potreba vytvaret promennou thread?
       Thread thread = new Thread(() =>
                {
                  while (true)
                  {
                    try
                    {
-                     var bytes = new byte[16];
+                     var bytes = new byte[1024];
                      var currentConnection = _tcpListener.AcceptTcpClient();
                      var stream = currentConnection.GetStream();
                      var numBytesReadFromStream = stream.Read(bytes, 0, bytes.Length);
                      Log.Information("Prijata data " + String.Join(" ", bytes));
-
+                     InData.Instance.RawData = bytes;
                    }
                    catch (Exception e)
                    {
@@ -115,8 +118,17 @@ namespace T3
                  }
                });
       _tcpListenerThread = thread;
-      _tcpListenerThread.Start();
-      _status = ConnectionStatus.Connected;
+      try
+      {
+        _tcpListenerThread.Start();
+      }
+      catch (Exception e)
+      {
+        Log.Error(e.ToString());
+        MessageBox.Show("Chyba pri spousteni naslouchaciho vlakna");
+      }
+      
+      return ConnectionStatus.Connected;
     }
     /**
      * <summary>
@@ -132,7 +144,8 @@ namespace T3
       }
       catch (Exception e)
       {
-        MessageBox.Show(e.ToString());
+        Log.Error("Chyba pri ukoncovani naslouchajiciho vlakna "+e.ToString());
+        MessageBox.Show("Doslo k chybe pri ukoncovani naslouchajiciho vlakna");
       }
     }
 
