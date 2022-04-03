@@ -211,7 +211,7 @@ namespace T3
       this.tableLayoutPanelConnectionSettings.RowCount = 2;
       this.tableLayoutPanelConnectionSettings.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanelConnectionSettings.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      this.tableLayoutPanelConnectionSettings.Size = new System.Drawing.Size(280, 55);
+      this.tableLayoutPanelConnectionSettings.Size = new System.Drawing.Size(280, 63);
       this.tableLayoutPanelConnectionSettings.TabIndex = 13;
       // 
       // labelOutStatus
@@ -290,7 +290,7 @@ namespace T3
       // 
       // buttonSetCurrentRail
       // 
-      this.buttonSetCurrentRail.Location = new System.Drawing.Point(3, 131);
+      this.buttonSetCurrentRail.Location = new System.Drawing.Point(3, 139);
       this.buttonSetCurrentRail.Name = "buttonSetCurrentRail";
       this.buttonSetCurrentRail.Size = new System.Drawing.Size(280, 26);
       this.buttonSetCurrentRail.TabIndex = 17;
@@ -301,7 +301,7 @@ namespace T3
       // labelBridgeStatus
       // 
       this.labelBridgeStatus.AutoSize = true;
-      this.labelBridgeStatus.Location = new System.Drawing.Point(3, 160);
+      this.labelBridgeStatus.Location = new System.Drawing.Point(3, 168);
       this.labelBridgeStatus.Name = "labelBridgeStatus";
       this.labelBridgeStatus.Size = new System.Drawing.Size(37, 13);
       this.labelBridgeStatus.TabIndex = 15;
@@ -309,7 +309,7 @@ namespace T3
       // 
       // splitContainerCurrentRail
       // 
-      this.splitContainerCurrentRail.Location = new System.Drawing.Point(3, 176);
+      this.splitContainerCurrentRail.Location = new System.Drawing.Point(3, 184);
       this.splitContainerCurrentRail.Name = "splitContainerCurrentRail";
       // 
       // splitContainerCurrentRail.Panel1
@@ -346,7 +346,7 @@ namespace T3
       this.flowLayoutPanelNumberOfRails.Controls.Add(this.label8);
       this.flowLayoutPanelNumberOfRails.Controls.Add(this.numericUpDownNumberOfRails);
       this.flowLayoutPanelNumberOfRails.Controls.Add(this.buttonCreateRails);
-      this.flowLayoutPanelNumberOfRails.Location = new System.Drawing.Point(3, 218);
+      this.flowLayoutPanelNumberOfRails.Location = new System.Drawing.Point(3, 226);
       this.flowLayoutPanelNumberOfRails.Name = "flowLayoutPanelNumberOfRails";
       this.flowLayoutPanelNumberOfRails.Size = new System.Drawing.Size(280, 29);
       this.flowLayoutPanelNumberOfRails.TabIndex = 23;
@@ -396,7 +396,7 @@ namespace T3
       // 
       // splitContainerForceTurn
       // 
-      this.splitContainerForceTurn.Location = new System.Drawing.Point(3, 253);
+      this.splitContainerForceTurn.Location = new System.Drawing.Point(3, 261);
       this.splitContainerForceTurn.Name = "splitContainerForceTurn";
       // 
       // splitContainerForceTurn.Panel1
@@ -432,7 +432,7 @@ namespace T3
       // 
       // buttonStop
       // 
-      this.buttonStop.Location = new System.Drawing.Point(3, 283);
+      this.buttonStop.Location = new System.Drawing.Point(3, 291);
       this.buttonStop.Name = "buttonStop";
       this.buttonStop.Size = new System.Drawing.Size(75, 23);
       this.buttonStop.TabIndex = 25;
