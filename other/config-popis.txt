@@ -1,0 +1,35 @@
+﻿{
+  "Inputs": [
+    "TtIsTurningCW",
+    "TtIsTurningCCW",
+    "TtRailIsTouching",
+    {
+      "TurntableRailId": 1
+    },
+    {
+      "TurntableRailId": 2
+    },
+    {
+      "TurntableRailId": 3
+    },
+    {
+      "TurntableRailId": 4
+    },
+    {
+      "TurntableRailId": 5
+    },
+    {
+      "TurntableRailId": 6
+    }
+  ],
+  "Outputs": [
+    "TtIsActive",
+    "TtTurnCW",
+    "TtTurnCCW"
+  ],
+  "LocalAddress": "localhost",
+  "LocalPort": 13002,
+  "ModuleNumber": 150,
+  "ServerAddress": "server.address",
+  "ServerPort": 13000
+}

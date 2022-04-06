@@ -37,8 +37,7 @@ namespace T3
      * **/
     public TurnTable()
     {
-      CurrentRailLocationNumber = 0;
-      
+      CurrentRailLocationNumber = 0;      
     }
     /// 
     /// Zapouzdreni.

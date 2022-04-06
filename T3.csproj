@@ -140,6 +140,7 @@
     <Content Include="img\color\StatusIndicator_innactive.png" />
     <Content Include="img\color\StatusIndicator_ready.png" />
     <Content Include="img\turntable.png" />
+    <Content Include="other\config-popis.txt" />
     <Content Include="other\E-mail.txt" />
     <Content Include="other\TODO-List.txt" />
   </ItemGroup>
