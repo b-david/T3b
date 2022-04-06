@@ -1,0 +1,43 @@
+číslo modulu:		150			MTB-UNI 150			
+typ:		MTB-UNI						
+verze desky:		4.0			umístění:	Rám depo		
+firmware:					adr. HEX:	0x96	adr. BIN:	10010110
+VSTUPY								
+vstup	proměnná		druh sig.	zdroj signálu		poznámka		
+0	Točna točí po HR		TTL	Arduino točna		Po směru hodinových ručiček		
+1	Točna točí proti HR		TTL	Arduino točna		Proti směru hod. ručiček		
+2	Točna dotyk paprsku		TTL	Točna				
+3	Točna paprsek 1		TTL	Točna				
+4	Točna paprsek 2		TTL	Točna				
+5	Točna paprsek 3		TTL	Točna				
+6	Točna paprsek 4		TTL	Točna				
+7	Točna paprsek 5		TTL	Točna				
+8	Točna paprsek 6		TTL	Točna				
+9								
+10								
+11								
+12								
+13								
+14								
+15								
+VÝSTUPY								
+výstup	proměnná		druh sig.	cíl signálu		poznámka		
+0	Točna aktivní		TTL	Arduino točna				
+1	Točna toč po HR		TTL	Arduino točna		Po směru hodinových ručiček		
+2	Točna toč proti HR		TTL	Arduino točna		Proti směru hod. ručiček		
+3								
+4								
+5								
+6								
+7								
+8								
+9								
+10								
+11								
+12								
+13								
+14								
+15								
+poznámka:								
+								
+datum:	1.1.2020			zpracoval:		Jan Horáček		

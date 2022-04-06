@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="InData.cs" />
     <Compile Include="EnumEx.cs" />
+    <Compile Include="MyConfig.cs" />
     <Compile Include="TurnTable.cs" />
     <Compile Include="T3.cs">
       <SubType>Form</SubType>
@@ -83,6 +84,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="other\150 Depo - 101.tsv" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -108,7 +110,8 @@
     <Content Include="img\color\StatusIndicator_innactive.png" />
     <Content Include="img\color\StatusIndicator_ready.png" />
     <Content Include="img\turntable.png" />
-    <Content Include="other\TextFile1.txt" />
+    <Content Include="other\E-mail.txt" />
+    <Content Include="other\TODO-List.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
