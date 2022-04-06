@@ -1,6 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
 using Serilog;
+using Newtonsoft.Json;
+using System.IO;
+using System.Windows.Forms;
+
 namespace T3
 {
 
@@ -16,10 +20,11 @@ namespace T3
     private byte _currentRailLocationNumber;
     private byte _numberOfRails;
     // Nastaveni hodnot pro pripojeni
-    private string _ipIn = "127.0.0.1";
-    private string _ipOut = "127.0.0.1";
+    private string _ipIn;
+    private string _ipOut;
     private string _portIn = "13000";
     private string _portOut = "13002";
+    private MyConfig _config;
 
     // Nastaveni statusu
     private ConnectionStatus _connectionInStatus = ConnectionStatus.Disconnected;
@@ -34,6 +39,7 @@ namespace T3
     public TurnTable()
     {
       CurrentRailLocationNumber = 0;
+      LoadConfigDataFromJsonFile();
     }
     /// 
     /// Zapouzdreni.
@@ -109,6 +115,34 @@ namespace T3
     public string ConnectionInStatusString { get => ConnectionInStatus.ToDescriptionString(); }
     public string ConnectionOutStatusString { get => ConnectionOutStatus.ToDescriptionString(); }
     public string BridgeStatusString { get => BridgeStatus.ToDescriptionString(); }
+
+    /// <summary>
+    /// Metoda nacte konfiguracni parametry z JSON souboru.
+    /// </summary>
+    private void LoadConfigDataFromJsonFile()
+    {
+      // nacteni config souboru
+      // read file into a string and deserialize JSON to a type
+      //Movie movie1 = JsonConvert.DeserializeObject<Movie>(File.ReadAllText(@"c:\movie.json"));
+
+      //// deserialize JSON directly from a file
+      //using (StreamReader file = File.OpenText(@"c:\movie.json"))
+      //{
+      //  JsonSerializer serializer = new JsonSerializer();
+      //  Movie movie2 = (Movie)serializer.Deserialize(file, typeof(Movie));
+      //}
+      Log.Verbose("Nacitmam konfiguracni JSON soubor.");
+      try
+      {
+        _config = JsonConvert.DeserializeObject<MyConfig>(File.ReadAllText(@"config.json"));
+      }
+      catch (Exception e)
+      {
+        Log.Error(e.ToString());
+      }
+      IpIn = _config.LocalAddress;
+      IpOut = _config.ServerAddress;
+    }
 
     /**
      * <summary>
@@ -188,7 +222,7 @@ namespace T3
       Log.Information("Otoceni na kolej c. " + railNumber.ToString());
       TurntableData.Instance.WantedRail = railNumber;
       // nastaveni potrebnych dat
-      byte[] data = { railNumber};
+      byte[] data = { railNumber };
       _senderOut.SendData(data);
     }
 

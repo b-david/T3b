@@ -8,16 +8,16 @@ namespace T3
 {
     public class MyConfig
     {
-        private byte _moduleNumber;
+        private int _moduleNumber;
         private string _serverAddress;
-        private byte _serverPort;
+        private int _serverPort;
         private string _localAddress = "localhost";
-        private byte _localPort;
+        private int _localPort;
 
-        public byte ModuleNumber { get => _moduleNumber; set => _moduleNumber = value; }
+        public int ModuleNumber { get => _moduleNumber; set => _moduleNumber = value; }
         public string ServerAddress { get => _serverAddress; set => _serverAddress = value; }
-        public byte ServerPort { get => _serverPort; set => _serverPort = value; }
+        public int ServerPort { get => _serverPort; set => _serverPort = value; }
         public string LocalAddress { get => _localAddress; set => _localAddress = value; }
-        public byte LocalPort { get => _localPort; set => _localPort = value; }
+        public int LocalPort { get => _localPort; set => _localPort = value; }
     }
 }
