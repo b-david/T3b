@@ -100,7 +100,6 @@ namespace T3
     private void ButtonSetCurrentRail_Click(object sender, EventArgs e)
     {
 
-      throw new NotImplementedException();
     }
     /// <summary>
     /// Metoda zpracovavajici kliknuti na tlacitko vytvorit koleje.
@@ -186,9 +185,7 @@ namespace T3
 
     private void T3_Load(object sender, EventArgs e)
     {
-      // vytvoreni kolejovych tlacitek
-      Log.Information("Stisknuto tlacitko vytvoreni koleji.");
-      CreateRailButtons();
+      Tt.LoadConfigDataFromJsonFile();
     }
     /// <summary>
     /// 

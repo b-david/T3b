@@ -3,7 +3,6 @@ using System.ComponentModel;
 using Serilog;
 using Newtonsoft.Json;
 using System.IO;
-using System.Windows.Forms;
 
 namespace T3
 {
@@ -18,12 +17,12 @@ namespace T3
     private MyTcpSender _senderOut;
 
     private byte _currentRailLocationNumber;
-    private byte _numberOfRails;
+    private byte _numberOfRails;    
     // Nastaveni hodnot pro pripojeni
-    private string _ipIn;
-    private string _ipOut;
-    private string _portIn = "13000";
-    private string _portOut = "13002";
+    private string _ipIn = "";
+    private string _ipOut = "";
+    private string _portIn = "";
+    private string _portOut = "";
     private MyConfig _config;
 
     // Nastaveni statusu
@@ -39,7 +38,7 @@ namespace T3
     public TurnTable()
     {
       CurrentRailLocationNumber = 0;
-      LoadConfigDataFromJsonFile();
+      
     }
     /// 
     /// Zapouzdreni.
@@ -119,18 +118,10 @@ namespace T3
     /// <summary>
     /// Metoda nacte konfiguracni parametry z JSON souboru.
     /// </summary>
-    private void LoadConfigDataFromJsonFile()
+    public void LoadConfigDataFromJsonFile()
     {
       // nacteni config souboru
-      // read file into a string and deserialize JSON to a type
-      //Movie movie1 = JsonConvert.DeserializeObject<Movie>(File.ReadAllText(@"c:\movie.json"));
 
-      //// deserialize JSON directly from a file
-      //using (StreamReader file = File.OpenText(@"c:\movie.json"))
-      //{
-      //  JsonSerializer serializer = new JsonSerializer();
-      //  Movie movie2 = (Movie)serializer.Deserialize(file, typeof(Movie));
-      //}
       Log.Verbose("Nacitmam konfiguracni JSON soubor.");
       try
       {
@@ -142,6 +133,8 @@ namespace T3
       }
       IpIn = _config.LocalAddress;
       IpOut = _config.ServerAddress;
+      PortIn = _config.LocalPort.ToString();
+      PortOut = _config.ServerPort.ToString();
     }
 
     /**

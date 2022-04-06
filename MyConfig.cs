@@ -14,6 +14,9 @@ namespace T3
         private string _localAddress = "localhost";
         private int _localPort;
 
+
+
+        private 
         public int ModuleNumber { get => _moduleNumber; set => _moduleNumber = value; }
         public string ServerAddress { get => _serverAddress; set => _serverAddress = value; }
         public int ServerPort { get => _serverPort; set => _serverPort = value; }
