@@ -57,6 +57,7 @@ namespace T3
       this.label8 = new System.Windows.Forms.Label();
       this.numericUpDownNumberOfRails = new System.Windows.Forms.NumericUpDown();
       this.buttonCreateRails = new System.Windows.Forms.Button();
+      this.button2 = new System.Windows.Forms.Button();
       this.splitContainerForceTurn = new System.Windows.Forms.SplitContainer();
       this.buttonForceTurnCW = new System.Windows.Forms.Button();
       this.buttonForceTurnCCW = new System.Windows.Forms.Button();
@@ -348,6 +349,7 @@ namespace T3
       this.flowLayoutPanelNumberOfRails.Controls.Add(this.label8);
       this.flowLayoutPanelNumberOfRails.Controls.Add(this.numericUpDownNumberOfRails);
       this.flowLayoutPanelNumberOfRails.Controls.Add(this.buttonCreateRails);
+      this.flowLayoutPanelNumberOfRails.Controls.Add(this.button2);
       this.flowLayoutPanelNumberOfRails.Location = new System.Drawing.Point(3, 226);
       this.flowLayoutPanelNumberOfRails.Name = "flowLayoutPanelNumberOfRails";
       this.flowLayoutPanelNumberOfRails.Size = new System.Drawing.Size(280, 29);
@@ -359,21 +361,16 @@ namespace T3
       this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
       this.label8.Location = new System.Drawing.Point(3, 0);
       this.label8.Name = "label8";
-      this.label8.Size = new System.Drawing.Size(67, 29);
+      this.label8.Size = new System.Drawing.Size(45, 29);
       this.label8.TabIndex = 0;
-      this.label8.Text = "Počet kolejí:";
+      this.label8.Text = "Úhel [°]:";
       // 
       // numericUpDownNumberOfRails
       // 
       this.numericUpDownNumberOfRails.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.numericUpDownNumberOfRails.Location = new System.Drawing.Point(76, 3);
+      this.numericUpDownNumberOfRails.Location = new System.Drawing.Point(54, 3);
       this.numericUpDownNumberOfRails.Maximum = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-      this.numericUpDownNumberOfRails.Minimum = new decimal(new int[] {
-            1,
+            360,
             0,
             0,
             0});
@@ -388,13 +385,22 @@ namespace T3
       // 
       // buttonCreateRails
       // 
-      this.buttonCreateRails.Location = new System.Drawing.Point(142, 3);
+      this.buttonCreateRails.Location = new System.Drawing.Point(120, 3);
       this.buttonCreateRails.Name = "buttonCreateRails";
       this.buttonCreateRails.Size = new System.Drawing.Size(75, 23);
       this.buttonCreateRails.TabIndex = 2;
       this.buttonCreateRails.Text = "Vytvoř koleje";
       this.buttonCreateRails.UseVisualStyleBackColor = true;
       this.buttonCreateRails.Click += new System.EventHandler(this.ButtonCreateRails_Click);
+      // 
+      // button2
+      // 
+      this.button2.Location = new System.Drawing.Point(201, 3);
+      this.button2.Name = "button2";
+      this.button2.Size = new System.Drawing.Size(8, 8);
+      this.button2.TabIndex = 3;
+      this.button2.Text = "button2";
+      this.button2.UseVisualStyleBackColor = true;
       // 
       // splitContainerForceTurn
       // 
@@ -523,6 +529,7 @@ namespace T3
     private System.Windows.Forms.FlowLayoutPanel flowLayoutOptions;
     private System.Windows.Forms.Button buttonStop;
         private System.Windows.Forms.Button button1;
-    }
+    private System.Windows.Forms.Button button2;
+  }
 }
 

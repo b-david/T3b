@@ -113,6 +113,7 @@ namespace T3
     public string ConnectionInStatusString { get => ConnectionInStatus.ToDescriptionString(); }
     public string ConnectionOutStatusString { get => ConnectionOutStatus.ToDescriptionString(); }
     public string BridgeStatusString { get => BridgeStatus.ToDescriptionString(); }
+    public MyConfig Config { get => _config; set => _config = value; }
 
     /// <summary>
     /// Metoda nacte konfiguracni parametry z JSON souboru.
@@ -124,7 +125,7 @@ namespace T3
       Log.Verbose("Nacitam konfiguracni JSON soubor.");
       try
       {
-        _config = JsonConvert.DeserializeObject<MyConfig>(File.ReadAllText(@"config.json"));
+        Config = JsonConvert.DeserializeObject<MyConfig>(File.ReadAllText(@"config.json"));
       }
       catch (Exception e)
       {
@@ -134,10 +135,10 @@ namespace T3
 
       // Zpracuj vystupy
 
-      IpIn = _config.LocalAddress;
-      IpOut = _config.ServerAddress;
-      PortIn = _config.LocalPort.ToString();
-      PortOut = _config.ServerPort.ToString();
+      IpIn = Config.LocalAddress;
+      IpOut = Config.ServerAddress;
+      PortIn = Config.LocalPort.ToString();
+      PortOut = Config.ServerPort.ToString();
     }
 
     /**

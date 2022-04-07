@@ -12,10 +12,7 @@ namespace T3
     private TurnTable _tt;
     public TurnTable Tt { get => _tt; set => _tt = value; }
 
-    // Velikost tlacitka koleje.
-    private static int railButtonSize = 50;
-    // Offset tlacitka koleje
-    private static int railButtonOffset = railButtonSize / 2;
+
     /**
      * <summary>
      * Konstruktor.
@@ -79,7 +76,7 @@ namespace T3
     }
 
     /**
-     * <summary>Odpojeni vsech spojeni a ukonceni pripadnych vlaken.</summary>
+     * <summary>Odpojeni vsech spojeni angleRadians ukonceni pripadnych vlaken.</summary>
      * */
     private void T3_FormClosing(object sender, FormClosingEventArgs e)
     {
@@ -112,17 +109,17 @@ namespace T3
       CreateRailButtons();
     }
     /// <summary>
-    /// Metoda vytvori potrebny pocet tlacitek a nastavi vnitrni hodnoty.
+    /// Metoda vytvori potrebny pocet tlacitek angleRadians nastavi vnitrni hodnoty.
     /// </summary>
     private void CreateRailButtons()
     {
       Log.Information("Vytvareni tlacitek koleji na obrazku tocny.");
       DeletePanel2Buttons();
-      int numberOfRails = 0;
+      int angle = 0;
       try
       {
         // prevod z numerickupdown decimal hodnoty na int
-        numberOfRails = Decimal.ToInt32(numericUpDownNumberOfRails.Value);
+        angle = Decimal.ToInt32(numericUpDownNumberOfRails.Value);
         // zjistit pocatecni pozici koleji
       }
       catch (OverflowException e)
@@ -137,27 +134,56 @@ namespace T3
 
       // Polomer obrazku tocny.
       int r = splitContainerMain.Panel2.BackgroundImage.Size.Width / 2;
+      // 
+      double x, y, angleRadians;
+      // prevod stupnu na radiany
+      angleRadians = Math.PI / 180.0 * (double)angle;
 
-      double x, y, a;
+      // Velikost oblasti pro tlacitka
+      //  - b^2 = c^2 + angleRadians^2 - 2*c*angleRadians*cos(beta)
+      //  - b = sqrt(2*r^2-2*r^2*cos(beta))
+      double buttonRange = Math.Sqrt(r * r * 2 - 2 * r * r * Math.Cos(Math.PI / 180 * Tt.Config.RailAngleSize));
+
+      // Velikost tlacitka koleje.
+      int railButtonWidth = (int)buttonRange;
+      int RailButtonHeight = 150;
+      // Offset tlacitka koleje
+      // #todo offsety jsou pro sirku a vysku rozdilne
+      int railButtonOffset = railButtonWidth / 2;
+      Log.Information("2 Button Range = " + buttonRange.ToString());
+
       try
       {
-        // dynamicke tvoreni tlacitek
-        for (int i = 0; i < numberOfRails; i++)
+        //// dynamicke tvoreni tlacitek
+        //for (int i = 0; i < angle; i++)
+        //{
+        //  angleRadians = Math.PI + 2 * Math.PI / angle * i;
+        //  x = r * Math.Cos(angleRadians) + h - railButtonOffset;
+        //  y = r * Math.Sin(angleRadians) + k - railButtonOffset;
+
+        //  Button b = new Button
+        //  {
+        //    Text = i.ToString(),
+        //    Location = new Point(Convert.ToInt32(x), Convert.ToInt32(y)),
+        //    Size = new Size(railButtonWidth, railButtonWidth)
+
+        //  };
+        //  splitContainerMain.Panel2.Controls.Add(b);
+        //  b.Click += new EventHandler(RailClick);
+        //}
+        x = r * Math.Cos(angleRadians) + h - railButtonOffset;
+        y = r * Math.Sin(angleRadians) + k - railButtonOffset;
+
+        Button b = new Button
         {
-          a = Math.PI + 2 * Math.PI / numberOfRails * i;
-          x = r * Math.Cos(a) + h - railButtonOffset;
-          y = r * Math.Sin(a) + k - railButtonOffset;
+          Text = "0",
+          Location = new Point(Convert.ToInt32(x), Convert.ToInt32(y)),
+          Size = new Size(railButtonWidth, RailButtonHeight)
 
-          Button b = new Button
-          {
-            Text = i.ToString(),
-            Location = new Point(Convert.ToInt32(x), Convert.ToInt32(y)),
-            Size = new Size(railButtonSize, railButtonSize)
+        };
+        splitContainerMain.Panel2.Controls.Add(b);
+        b.Click += new EventHandler(RailClick);
 
-          };
-          splitContainerMain.Panel2.Controls.Add(b);
-          b.Click += new EventHandler(RailClick);
-        }
       }
       catch (OverflowException e) { Log.Error(e.ToString()); }
       catch (Exception e) { Log.Fatal(e.ToString()); }
@@ -197,9 +223,9 @@ namespace T3
       Tt.StopTurntable();
     }
 
-        private void Button1_Click(object sender, EventArgs e)
-        {
+    private void Button1_Click(object sender, EventArgs e)
+    {
 
-        }
     }
+  }
 }
