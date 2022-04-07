@@ -14,12 +14,12 @@ namespace T3
     {
       // nastavenmi logovani      
       Log.Logger = new LoggerConfiguration()
+        .MinimumLevel.Verbose()
         .WriteTo.Console()
         .WriteTo.File("log-" + DateTime.Now.ToString("yyMMdd HH-mm-ss") + ".txt", 
           outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}")
         .CreateLogger();
-      Log.Verbose("All set up.");
-
+      Log.Verbose("All set up.");      
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
       Application.Run(new T3());

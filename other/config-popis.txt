@@ -4,22 +4,34 @@
     "TtIsTurningCCW",
     "TtRailIsTouching",
     {
-      "TurntableRailId": 1
+      "TurntableRailId": 1,
+      "AnglePosition" : 9,
+      "Type" : "Mirrored"
     },
     {
-      "TurntableRailId": 2
+      "TurntableRailId": 2,
+      "AnglePosition" : 18,
+      "Type" : "Mirrored"
     },
     {
-      "TurntableRailId": 3
+      "TurntableRailId": 3,
+      "AnglePosition" : 27,
+      "Type" : "Mirrored"
     },
     {
-      "TurntableRailId": 4
+      "TurntableRailId": 4,
+      "AnglePosition" : 36,
+      "Type" : "Mirrored"
     },
     {
-      "TurntableRailId": 5
+      "TurntableRailId": 5,
+      "AnglePosition" : 326,
+      "Type" : "Mirrored"
     },
     {
-      "TurntableRailId": 6
+      "TurntableRailId": 6,
+      "AnglePosition" : 353,
+      "Type" : "Mirrored"
     }
   ],
   "Outputs": [
@@ -31,5 +43,6 @@
   "LocalPort": 13002,
   "ModuleNumber": 150,
   "ServerAddress": "server.address",
-  "ServerPort": 13000
+  "ServerPort": 13000,
+  "RailAngleSize" : 9
 }

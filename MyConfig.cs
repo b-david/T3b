@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 
 // pokracovani https://www.newtonsoft.com/json/help/html/DeserializeCustomCreationConverter.htm
 
@@ -10,26 +6,49 @@ namespace T3
 {
   public class Inputs
   {
+    [JsonProperty("Id")]
+    public string Id { get; set; }
 
+    [JsonProperty("Type")]
+    public string Type { get; set; }
   }
 
-  public class Outputs
+  public class Inputs2
   {
+    [JsonProperty("Id")]
+    public string Id { get; set; }
 
+    [JsonProperty("AnglePosition")]
+    public int AnglePosition { get; set; }
+
+    [JsonProperty("Type")]
+    public string Type { get; set; }
   }
+
   public class MyConfig
   {
-    private int _moduleNumber;
-    private string _serverAddress;
-    private int _serverPort;
-    private string _localAddress = "localhost";
-    private int _localPort;
+    [JsonProperty("Inputs")]
+    public Inputs2[] Inputs { get; set; }
 
-    public int ModuleNumber
-    { get => _moduleNumber; set => _moduleNumber = value; }
-    public string ServerAddress { get => _serverAddress; set => _serverAddress = value; }
-    public int ServerPort { get => _serverPort; set => _serverPort = value; }
-    public string LocalAddress { get => _localAddress; set => _localAddress = value; }
-    public int LocalPort { get => _localPort; set => _localPort = value; }
+    [JsonProperty("Outputs")]
+    public string[] Outputs { get; set; }
+
+    [JsonProperty("LocalAddress")]
+    public string LocalAddress { get; set; }
+
+    [JsonProperty("LocalPort")]
+    public int LocalPort { get; set; }
+
+    [JsonProperty("ModuleNumber")]
+    public int ModuleNumber { get; set; }
+
+    [JsonProperty("ServerAddress")]
+    public string ServerAddress { get; set; }
+
+    [JsonProperty("ServerPort")]
+    public int ServerPort { get; set; }
+
+    [JsonProperty("RailAngleSize")]
+    public int RailAngleSize { get; set; }
   }
 }

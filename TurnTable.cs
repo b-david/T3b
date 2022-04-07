@@ -121,7 +121,7 @@ namespace T3
     {
       // nacteni config souboru
 
-      Log.Verbose("Nacitmam konfiguracni JSON soubor.");
+      Log.Verbose("Nacitam konfiguracni JSON soubor.");
       try
       {
         _config = JsonConvert.DeserializeObject<MyConfig>(File.ReadAllText(@"config.json"));
@@ -130,6 +130,10 @@ namespace T3
       {
         Log.Error(e.ToString());
       }
+      // Zpracuj vstupy
+
+      // Zpracuj vystupy
+
       IpIn = _config.LocalAddress;
       IpOut = _config.ServerAddress;
       PortIn = _config.LocalPort.ToString();

@@ -7,6 +7,22 @@ using System.Threading.Tasks;
 
 namespace T3
 {
+
+  public enum InputType
+  {
+    None = 0,
+    CW,
+    CCW,
+    InPosition,
+    R0,
+    R1,
+    R2,
+    R3,
+    R4,
+    R5,
+    R6
+
+  }
   public enum TurnDirection
   {
     [Description("Zadny smer")]
