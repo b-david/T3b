@@ -57,15 +57,17 @@ namespace T3
       this.label8 = new System.Windows.Forms.Label();
       this.numericUpDownNumberOfRails = new System.Windows.Forms.NumericUpDown();
       this.buttonCreateRails = new System.Windows.Forms.Button();
-      this.button2 = new System.Windows.Forms.Button();
       this.splitContainerForceTurn = new System.Windows.Forms.SplitContainer();
       this.buttonForceTurnCW = new System.Windows.Forms.Button();
       this.buttonForceTurnCCW = new System.Windows.Forms.Button();
       this.buttonStop = new System.Windows.Forms.Button();
       this.button1 = new System.Windows.Forms.Button();
+      this.button2 = new System.Windows.Forms.Button();
+      this.angledTextRoundButton1 = new AngledTextRoundButton();
       this.tableLayoutPanelConnectionSettings.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
       this.splitContainerMain.Panel1.SuspendLayout();
+      this.splitContainerMain.Panel2.SuspendLayout();
       this.splitContainerMain.SuspendLayout();
       this.flowLayoutOptions.SuspendLayout();
       this.tableLayoutPanel1.SuspendLayout();
@@ -247,8 +249,10 @@ namespace T3
       // 
       this.splitContainerMain.Panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("splitContainerMain.Panel2.BackgroundImage")));
       this.splitContainerMain.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-      this.splitContainerMain.Size = new System.Drawing.Size(983, 700);
-      this.splitContainerMain.SplitterDistance = 324;
+      this.splitContainerMain.Panel2.Controls.Add(this.angledTextRoundButton1);
+      this.splitContainerMain.Panel2.Controls.Add(this.button2);
+      this.splitContainerMain.Size = new System.Drawing.Size(1183, 903);
+      this.splitContainerMain.SplitterDistance = 389;
       this.splitContainerMain.TabIndex = 19;
       // 
       // flowLayoutOptions
@@ -349,7 +353,6 @@ namespace T3
       this.flowLayoutPanelNumberOfRails.Controls.Add(this.label8);
       this.flowLayoutPanelNumberOfRails.Controls.Add(this.numericUpDownNumberOfRails);
       this.flowLayoutPanelNumberOfRails.Controls.Add(this.buttonCreateRails);
-      this.flowLayoutPanelNumberOfRails.Controls.Add(this.button2);
       this.flowLayoutPanelNumberOfRails.Location = new System.Drawing.Point(3, 226);
       this.flowLayoutPanelNumberOfRails.Name = "flowLayoutPanelNumberOfRails";
       this.flowLayoutPanelNumberOfRails.Size = new System.Drawing.Size(280, 29);
@@ -392,15 +395,6 @@ namespace T3
       this.buttonCreateRails.Text = "Vytvoř koleje";
       this.buttonCreateRails.UseVisualStyleBackColor = true;
       this.buttonCreateRails.Click += new System.EventHandler(this.ButtonCreateRails_Click);
-      // 
-      // button2
-      // 
-      this.button2.Location = new System.Drawing.Point(201, 3);
-      this.button2.Name = "button2";
-      this.button2.Size = new System.Drawing.Size(8, 8);
-      this.button2.TabIndex = 3;
-      this.button2.Text = "button2";
-      this.button2.UseVisualStyleBackColor = true;
       // 
       // splitContainerForceTurn
       // 
@@ -458,20 +452,41 @@ namespace T3
       this.button1.UseVisualStyleBackColor = true;
       this.button1.Click += new System.EventHandler(this.Button1_Click);
       // 
+      // button2
+      // 
+      this.button2.Location = new System.Drawing.Point(214, 72);
+      this.button2.Name = "button2";
+      this.button2.Size = new System.Drawing.Size(176, 167);
+      this.button2.TabIndex = 3;
+      this.button2.Text = "TestButton";
+      this.button2.UseVisualStyleBackColor = true;
+      // 
+      // angledTextRoundButton1
+      // 
+      this.angledTextRoundButton1.Angle = 33;
+      this.angledTextRoundButton1.AngledText = null;
+      this.angledTextRoundButton1.Location = new System.Drawing.Point(30, 146);
+      this.angledTextRoundButton1.Name = "angledTextRoundButton1";
+      this.angledTextRoundButton1.Size = new System.Drawing.Size(132, 106);
+      this.angledTextRoundButton1.TabIndex = 4;
+      this.angledTextRoundButton1.UseVisualStyleBackColor = true;
+      // 
       // T3
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.SystemColors.Control;
-      this.ClientSize = new System.Drawing.Size(984, 730);
+      this.ClientSize = new System.Drawing.Size(1184, 930);
       this.Controls.Add(this.splitContainerMain);
       this.Name = "T3";
+      this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
       this.Text = "T3";
       this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.T3_FormClosing);
       this.Load += new System.EventHandler(this.T3_Load);
       this.tableLayoutPanelConnectionSettings.ResumeLayout(false);
       this.tableLayoutPanelConnectionSettings.PerformLayout();
       this.splitContainerMain.Panel1.ResumeLayout(false);
+      this.splitContainerMain.Panel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
       this.splitContainerMain.ResumeLayout(false);
       this.flowLayoutOptions.ResumeLayout(false);
@@ -530,6 +545,7 @@ namespace T3
     private System.Windows.Forms.Button buttonStop;
         private System.Windows.Forms.Button button1;
     private System.Windows.Forms.Button button2;
+    private AngledTextRoundButton angledTextRoundButton1;
   }
 }
 

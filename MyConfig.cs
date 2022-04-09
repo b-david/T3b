@@ -4,16 +4,9 @@
 
 namespace T3
 {
+  
+
   public class Inputs
-  {
-    [JsonProperty("Id")]
-    public string Id { get; set; }
-
-    [JsonProperty("Type")]
-    public string Type { get; set; }
-  }
-
-  public class Inputs2
   {
     [JsonProperty("Id")]
     public string Id { get; set; }
@@ -28,7 +21,7 @@ namespace T3
   public class MyConfig
   {
     [JsonProperty("Inputs")]
-    public Inputs2[] Inputs { get; set; }
+    public Inputs[] Inputs { get; set; }
 
     [JsonProperty("Outputs")]
     public string[] Outputs { get; set; }

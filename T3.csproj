@@ -88,6 +88,9 @@
     <Compile Include="InData.cs" />
     <Compile Include="EnumEx.cs" />
     <Compile Include="MyConfig.cs" />
+    <Compile Include="AngledTextRoundButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="TurnTable.cs" />
     <Compile Include="T3.cs">
       <SubType>Form</SubType>

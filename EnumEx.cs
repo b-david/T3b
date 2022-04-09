@@ -10,18 +10,14 @@ namespace T3
 
   public enum InputType
   {
+    [Description("None")]
     None = 0,
-    CW,
-    CCW,
-    InPosition,
-    R0,
-    R1,
-    R2,
-    R3,
-    R4,
-    R5,
-    R6
-
+    [Description("Control")]
+    Control,
+    [Description("Rail")]
+    Rail,
+    [Description("MirroredRail")]
+    MirroredRail,   
   }
   public enum TurnDirection
   {

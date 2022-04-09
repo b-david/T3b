@@ -139,6 +139,8 @@ namespace T3
       IpOut = Config.ServerAddress;
       PortIn = Config.LocalPort.ToString();
       PortOut = Config.ServerPort.ToString();
+
+
     }
 
     /**
