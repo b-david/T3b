@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -13,6 +14,7 @@ namespace T3
     private TurnTable _tt;
     public TurnTable Tt { get => _tt; set => _tt = value; }
     private readonly int _rOffset = 50;
+    private List<AngledTextRoundButton> _railTurnButtons = new List<AngledTextRoundButton>();
 
     /**
      * <summary>
@@ -65,9 +67,9 @@ namespace T3
     /// <param name="e"></param>
     private void RailClick(object sender, EventArgs e)
     {
-      Button b = sender as Button;
-      Log.Information("Stisknuto tlacitko " + b.Text);
-      Tt.TurnToRail(Byte.Parse(b.Text));
+      //Button b = sender as Button;
+      //Log.Information("Stisknuto tlacitko " + b.Text);
+      //Tt.TurnToRail(Byte.Parse(b.Text));
     }
 
     private void Stop_Click(object sender, EventArgs e)
@@ -108,41 +110,43 @@ namespace T3
     {
       Log.Information("Stisknuto tlacitko pro vytvoreni koleji.");
       CreateRailButtons();
-      
+
     }
     /// <summary>
-    /// Metoda vytvori potrebny pocet tlacitek angleRadians nastavi vnitrni hodnoty.
+    /// Metoda vytvori potrebny pocet tlacitek dle ...
     /// </summary>
     private void CreateRailButtons()
     {
-      Log.Information("Vytvareni tlacitek koleji na obrazku tocny.");
+      Log.Verbose("Vytvareni tlacitek koleji na obrazku tocny.");
       DeletePanel2Buttons();
-      int angle = 0;
+      int counter = 0;
       try
       {
         // prevod z numerickupdown decimal hodnoty na int
-        angle = Decimal.ToInt32(numericUpDownNumberOfRails.Value);
+        counter = Decimal.ToInt32(numericUpDownNumberOfRails.Value);
         // zjistit pocatecni pozici koleji
       }
       catch (OverflowException e)
       {
         MessageBox.Show(e.ToString());
         Log.Error("Chyba prevodu decimal ciselniku na int. " + e.ToString());
+        return;
       }
-      catch (Exception e) { Log.Fatal(e.ToString()); }
+      catch (Exception e)
+      {
+        MessageBox.Show(e.ToString()); ;
+        Log.Fatal(e.ToString());
+        return;
+      }
       /// Stredove souradnice obrazku tocny.
       int h = splitContainerMain.Panel2.Size.Width / 2;
       int k = splitContainerMain.Panel2.Size.Height / 2;
 
       // Polomer obrazku tocny.
       int r = splitContainerMain.Panel2.BackgroundImage.Size.Width / 2;
-      
+
       int rInner = r - _rOffset;
       int rOuter = r + _rOffset;
-      // 
-      double x, y, angleRadians;
-      // prevod stupnu na radiany
-      angleRadians = Math.PI / 180.0 * (double)angle;
 
       // Velikost oblasti pro tlacitka
       //  - b^2 = c^2 + angleRadians^2 - 2*c*angleRadians*cos(beta)
@@ -151,7 +155,6 @@ namespace T3
 
       // Velikost tlacitka koleje.
       int railButtonWidth = (int)buttonRange;
-      int RailButtonHeight = 150;
       // Offset tlacitka koleje
       // #todo offsety jsou pro sirku a vysku rozdilne
       int railButtonOffset = railButtonWidth / 2;
@@ -160,51 +163,40 @@ namespace T3
       try
       {
         // dynamicke tvoreni tlacitek
-        for (int i = 0; i < angle; i++)
+        for (int i = 0; i < counter; i++)
         {
-          // vypocet uhlu
-          angleRadians = Math.PI + 2 * Math.PI / angle * i;
           // vnitrni tlacitko
-          // vypocet souradnic vnitrniho tlacitka
-          x = rInner * Math.Cos(angleRadians) + h - railButtonOffset;
-          y = rInner * Math.Sin(angleRadians) + k - railButtonOffset;
-          // vytvoreni vnitrniho tlacitka
-          Button b = new Button
+          Log.Verbose("Vytvareni vnitrniho tlacitka");
+          AngledTextRoundButton bI = new AngledTextRoundButton()
           {
-            Text = i.ToString(),
-            Location = new Point(Convert.ToInt32(x), Convert.ToInt32(y)),
-            Size = new Size(railButtonWidth, railButtonWidth)
+            PositionAngle = 360 / counter * i,
+            TextAngle = 90,
+            Text = ">",
+            Size = new Size(30, 30)
           };
-          splitContainerMain.Panel2.Controls.Add(b);
+          bI.SetButtonPosition(h, k, rInner);
+          _railTurnButtons.Add(bI);
+          splitContainerMain.Panel2.Controls.Add(bI);
           // pridani eventu
-          b.Click += new EventHandler(RailClick);
-          // vnejsi tlacitko
-          // vypocet souradnic vnejsiho tlacitka
-          x = rOuter * Math.Cos(angleRadians) + h - railButtonOffset;
-          y = rOuter * Math.Sin(angleRadians) + k - railButtonOffset;
-          b = new Button
+          bI.Click += new EventHandler(RailClick);
+          // vnejsi
+          Log.Verbose("Vytvareni vnejsiho tlacitka");
+          AngledTextRoundButton bO = new AngledTextRoundButton()
           {
-            Text = i.ToString(),
-            Location = new Point(Convert.ToInt32(x), Convert.ToInt32(y)),
-            Size = new Size(railButtonWidth, railButtonWidth)
+            PositionAngle = 360 / counter * i,
+            TextAngle = 90,
+            Text = "<",
+            Size = new Size(20, 20)
           };
-          splitContainerMain.Panel2.Controls.Add(b);
-          b.Click += new EventHandler(RailClick);
-        }       
+          bO.SetButtonPosition(h, k, rOuter);
+          _railTurnButtons.Add(bO);
+          splitContainerMain.Panel2.Controls.Add(bO);
+          bO.Click += new EventHandler(RailClick);
+        }
       }
       catch (OverflowException e) { Log.Error(e.ToString()); }
       catch (Exception e) { Log.Fatal(e.ToString()); }
-
-      AngledTextRoundButton bu = new AngledTextRoundButton
-      {
-        Angle = 33,
-        AngledText = "1",
-        Location = new Point(50, 50),
-        Size = new Size(20,20)
-      };
-      splitContainerMain.Panel2.Controls.Add(bu);
     }
-
 
     /// <summary>
     /// Metoda vymaze vsechny ovladaci prvky ve druhem panelu hlavniho panelu.

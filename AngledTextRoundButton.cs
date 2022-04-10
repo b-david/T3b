@@ -6,22 +6,13 @@ using System.Windows.Forms;
 // https://stackoverflow.com/questions/5130008/is-it-possible-to-rotate-a-button-control-in-winforms
 public partial class AngledTextRoundButton : Button
 {
-  public int Angle { get; set; }  // to rotate your text
-  public string AngledText { get; set; }   // to draw text
+  public float PositionAngle { get; set; }  // to rotate your text  
+  public float TextAngle { get; set; }
 
   public AngledTextRoundButton()
   {
-    //InitializeComponent();
   }
 
-  int angle = 0;   // current rotation
-  Point oMid;      // original center
-
-  protected override void OnLayout(LayoutEventArgs levent)
-  {
-    base.OnLayout(levent);
-    if (oMid == Point.Empty) oMid = new Point(Left + Width / 2, Top + Height / 2);
-  }
 
   protected override void OnPaint(PaintEventArgs pe)
   {
@@ -32,27 +23,39 @@ public partial class AngledTextRoundButton : Button
     Text = "";
 
     base.OnPaint(pe);
-
     if (!this.DesignMode)
     {
-      Text = t_; pe.Graphics.TranslateTransform(mx, my);
-      pe.Graphics.RotateTransform(angle);
+      Text = t_; 
+      pe.Graphics.TranslateTransform(mx, my);
+      pe.Graphics.RotateTransform(this.PositionAngle+this.TextAngle);
       pe.Graphics.TranslateTransform(-mx, -my);
-
       pe.Graphics.DrawString(Text, Font, SystemBrushes.ControlText,
                             mx - (int)size.Width / 2, my - (int)size.Height / 2);
     }
   }
 
 
-
-  protected override void OnClick(EventArgs e)
+  public void SetButtonPosition(int h, int k, int r)
   {
-    this.Size = new Size(Height, Width);
-    this.Location = new Point(oMid.X - Width / 2, oMid.Y - Height / 2);
-    angle = Angle;
-    Text = angle + "°";
+    this.Location = AngledTextRoundButton.GetRadialPosition(h,
+      k, r, this.PositionAngle, this.Size.Width / 2, this.Size.Height / 2);
+  }
+  /// <summary>
+  /// 
+  /// </summary>
+  /// <param name="h">Horizontalni souradnice stredu.</param>
+  /// <param name="k">Vertikalni souradnice stredu.</param>
+  /// <param name="r">Polomer kruznice.</param>
+  /// <param name="angleDegree">Uhel ve stupnich.</param>
+  /// <param name="xOffset">Horizontalni offset.</param>
+  /// <param name="yOffset">Vertikalni offset.</param>
+  /// <returns></returns>
+  public static Point GetRadialPosition(int h, int k, int r, float angleDegree, int xOffset, int yOffset)
+  {
+    double angleRadians = Math.PI / 180 * ((double)(angleDegree % 360));
+    double x = r * Math.Cos(angleRadians) + h - xOffset;
+    double y = r * Math.Sin(angleRadians) + k - yOffset;
 
-    base.OnClick(e);
+    return new Point(Convert.ToInt32(x), Convert.ToInt32(y));
   }
 }

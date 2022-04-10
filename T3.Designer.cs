@@ -63,7 +63,6 @@ namespace T3
       this.buttonStop = new System.Windows.Forms.Button();
       this.button1 = new System.Windows.Forms.Button();
       this.button2 = new System.Windows.Forms.Button();
-      this.angledTextRoundButton1 = new AngledTextRoundButton();
       this.tableLayoutPanelConnectionSettings.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
       this.splitContainerMain.Panel1.SuspendLayout();
@@ -249,7 +248,6 @@ namespace T3
       // 
       this.splitContainerMain.Panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("splitContainerMain.Panel2.BackgroundImage")));
       this.splitContainerMain.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-      this.splitContainerMain.Panel2.Controls.Add(this.angledTextRoundButton1);
       this.splitContainerMain.Panel2.Controls.Add(this.button2);
       this.splitContainerMain.Size = new System.Drawing.Size(1183, 903);
       this.splitContainerMain.SplitterDistance = 389;
@@ -454,22 +452,12 @@ namespace T3
       // 
       // button2
       // 
-      this.button2.Location = new System.Drawing.Point(214, 72);
+      this.button2.Location = new System.Drawing.Point(22, 6);
       this.button2.Name = "button2";
-      this.button2.Size = new System.Drawing.Size(176, 167);
+      this.button2.Size = new System.Drawing.Size(146, 46);
       this.button2.TabIndex = 3;
       this.button2.Text = "TestButton";
       this.button2.UseVisualStyleBackColor = true;
-      // 
-      // angledTextRoundButton1
-      // 
-      this.angledTextRoundButton1.Angle = 33;
-      this.angledTextRoundButton1.AngledText = null;
-      this.angledTextRoundButton1.Location = new System.Drawing.Point(30, 146);
-      this.angledTextRoundButton1.Name = "angledTextRoundButton1";
-      this.angledTextRoundButton1.Size = new System.Drawing.Size(132, 106);
-      this.angledTextRoundButton1.TabIndex = 4;
-      this.angledTextRoundButton1.UseVisualStyleBackColor = true;
       // 
       // T3
       // 
@@ -545,7 +533,6 @@ namespace T3
     private System.Windows.Forms.Button buttonStop;
         private System.Windows.Forms.Button button1;
     private System.Windows.Forms.Button button2;
-    private AngledTextRoundButton angledTextRoundButton1;
   }
 }
 
