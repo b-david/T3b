@@ -452,6 +452,11 @@ namespace T3
       // 
       // button2
       // 
+      this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
+      this.button2.FlatAppearance.BorderSize = 5;
+      this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+      this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+      this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.button2.Location = new System.Drawing.Point(22, 6);
       this.button2.Name = "button2";
       this.button2.Size = new System.Drawing.Size(146, 46);

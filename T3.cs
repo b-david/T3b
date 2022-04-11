@@ -13,9 +13,14 @@ namespace T3
     // 
     private TurnTable _tt;
     public TurnTable Tt { get => _tt; set => _tt = value; }
-    private readonly int _rOffset = 50;
-    private List<AngledTextRoundButton> _railTurnButtons = new List<AngledTextRoundButton>();
+    private readonly int _rOuterOffset = 75;
+    private readonly int _rInnerOffset = 45;
 
+    private List<AngledTextRoundButton> _railTurnButtons = new List<AngledTextRoundButton>();
+    private List<Label> _railLabel = new List<Label>();
+    private readonly int _roundButtonSize = 30;
+    private readonly string _cwButtonText = ">";
+    private readonly string _ccwButtonText = "<";
     /**
      * <summary>
      * Konstruktor.
@@ -145,8 +150,8 @@ namespace T3
       // Polomer obrazku tocny.
       int r = splitContainerMain.Panel2.BackgroundImage.Size.Width / 2;
 
-      int rInner = r - _rOffset;
-      int rOuter = r + _rOffset;
+      int rInner = r + _rInnerOffset;
+      int rOuter = r + _rOuterOffset;
 
       // Velikost oblasti pro tlacitka
       //  - b^2 = c^2 + angleRadians^2 - 2*c*angleRadians*cos(beta)
@@ -165,33 +170,51 @@ namespace T3
         // dynamicke tvoreni tlacitek
         for (int i = 0; i < counter; i++)
         {
+          float angle = 36 / counter * i;
+          Log.Verbose("Vytvarim Label koleje.");
+          Label l = new Label()
+          {
+            Text = i.ToString(),
+            Size = new Size(20, 20),
+            Location = AngledTextRoundButton.GetRadialPosition(h,k,r+125, angle,12,12)            
+            
+          };
+          l.Parent = splitContainerMain.Panel2;
+          l.BackColor = Color.Transparent;
+          splitContainerMain.Panel2.Controls.Add(l);
           // vnitrni tlacitko
-          Log.Verbose("Vytvareni vnitrniho tlacitka");
+          Log.Verbose("Vytvareni vnitrniho tlacitka.");
           AngledTextRoundButton bI = new AngledTextRoundButton()
           {
-            PositionAngle = 360 / counter * i,
+            PositionAngle = angle,
             TextAngle = 90,
-            Text = ">",
-            Size = new Size(30, 30)
+            Text = _cwButtonText,
+            Size = new Size(_roundButtonSize, _roundButtonSize),            
+            Status = RailButtonStatus.Inactive
           };
           bI.SetButtonPosition(h, k, rInner);
           _railTurnButtons.Add(bI);
           splitContainerMain.Panel2.Controls.Add(bI);
+          bI.Refresh();
           // pridani eventu
           bI.Click += new EventHandler(RailClick);
           // vnejsi
+
           Log.Verbose("Vytvareni vnejsiho tlacitka");
           AngledTextRoundButton bO = new AngledTextRoundButton()
           {
-            PositionAngle = 360 / counter * i,
+            PositionAngle = angle,
             TextAngle = 90,
-            Text = "<",
-            Size = new Size(20, 20)
+            Text = _ccwButtonText,
+            Size = new Size(_roundButtonSize, _roundButtonSize),
+            Status = RailButtonStatus.Inactive
           };
           bO.SetButtonPosition(h, k, rOuter);
-          _railTurnButtons.Add(bO);
+          _railTurnButtons.Add(bO);          
           splitContainerMain.Panel2.Controls.Add(bO);
+          // pridani eventu
           bO.Click += new EventHandler(RailClick);
+          bO.Refresh();
         }
       }
       catch (OverflowException e) { Log.Error(e.ToString()); }

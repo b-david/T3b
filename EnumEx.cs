@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace T3
 {
-
+  
   public enum InputType
   {
     [Description("None")]
