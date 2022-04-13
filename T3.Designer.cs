@@ -63,9 +63,11 @@ namespace T3
       this.buttonStop = new System.Windows.Forms.Button();
       this.button1 = new System.Windows.Forms.Button();
       this.button2 = new System.Windows.Forms.Button();
+      this.pictureBoxTt = new System.Windows.Forms.PictureBox();
       this.tableLayoutPanelConnectionSettings.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
       this.splitContainerMain.Panel1.SuspendLayout();
+      this.splitContainerMain.Panel2.SuspendLayout();
       this.splitContainerMain.SuspendLayout();
       this.flowLayoutOptions.SuspendLayout();
       this.tableLayoutPanel1.SuspendLayout();
@@ -79,6 +81,7 @@ namespace T3
       this.splitContainerForceTurn.Panel1.SuspendLayout();
       this.splitContainerForceTurn.Panel2.SuspendLayout();
       this.splitContainerForceTurn.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTt)).BeginInit();
       this.SuspendLayout();
       // 
       // buttonConnectIn
@@ -247,6 +250,7 @@ namespace T3
       // 
       this.splitContainerMain.Panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("splitContainerMain.Panel2.BackgroundImage")));
       this.splitContainerMain.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+      this.splitContainerMain.Panel2.Controls.Add(this.pictureBoxTt);
       this.splitContainerMain.Size = new System.Drawing.Size(1183, 903);
       this.splitContainerMain.SplitterDistance = 323;
       this.splitContainerMain.TabIndex = 19;
@@ -464,6 +468,14 @@ namespace T3
       this.button2.UseVisualStyleBackColor = true;
       this.button2.Click += new System.EventHandler(this.button2_Click);
       // 
+      // pictureBoxTt
+      // 
+      this.pictureBoxTt.Location = new System.Drawing.Point(174, 192);
+      this.pictureBoxTt.Name = "pictureBoxTt";
+      this.pictureBoxTt.Size = new System.Drawing.Size(504, 510);
+      this.pictureBoxTt.TabIndex = 0;
+      this.pictureBoxTt.TabStop = false;
+      // 
       // T3
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -479,6 +491,7 @@ namespace T3
       this.tableLayoutPanelConnectionSettings.ResumeLayout(false);
       this.tableLayoutPanelConnectionSettings.PerformLayout();
       this.splitContainerMain.Panel1.ResumeLayout(false);
+      this.splitContainerMain.Panel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
       this.splitContainerMain.ResumeLayout(false);
       this.flowLayoutOptions.ResumeLayout(false);
@@ -498,6 +511,7 @@ namespace T3
       this.splitContainerForceTurn.Panel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerForceTurn)).EndInit();
       this.splitContainerForceTurn.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTt)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -537,6 +551,7 @@ namespace T3
     private System.Windows.Forms.Button buttonStop;
         private System.Windows.Forms.Button button1;
     private System.Windows.Forms.Button button2;
+    private System.Windows.Forms.PictureBox pictureBoxTt;
   }
 }
 

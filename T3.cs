@@ -271,7 +271,8 @@ namespace T3
         MessageBox.Show("Došlo k chybě při načítání konfiguračního souboru.");
         Log.Error(ex.ToString());
       }
-
+      pictureBoxTt.Parent = splitContainerMain.Panel2;
+      pictureBoxTt.BackColor = Color.Transparent;
       _bufl = new Bitmap(splitContainerMain.Panel2.Width, splitContainerMain.Panel2.Height);      
     }
     /// <summary>
@@ -286,32 +287,57 @@ namespace T3
 
     private void Button1_Click(object sender, EventArgs e)
     {
-
+      
     }
+
     private double _currentTtAngle = 0;
     private double _wantedAngle = 0;
     private Bitmap _bufl;
     private readonly Pen _ttPen = new Pen(Brushes.Black, 8.0F) 
       { LineJoin= System.Drawing.Drawing2D.LineJoin.Bevel };
-    public void AnimateTurntable()
+    public void AnimateTurntable(Point a, Point b)
     {
-      
+      Bitmap bm = new Bitmap(pictureBoxTt.Width, pictureBoxTt.Height);
       //Bitmap bufl = new Bitmap(splitContainerMain.Panel2.Width, splitContainerMain.Panel2..Height)
-      using (Graphics g = Graphics.FromImage(_bufl))
+      using (Graphics g = Graphics.FromImage(bm))
       {        
 
         // Draw a rectangle.
-        g.DrawLine(_ttPen, new Point(10,10), new Point(100,100));        
+        g.DrawLine(_ttPen, a, b);
 
-        // kresleni zde
-        splitContainerMain.Panel2.CreateGraphics().DrawImageUnscaled(_bufl, 0, 0);
+        // kresleni zde        
+        pictureBoxTt.CreateGraphics().DrawImageUnscaled(bm, 0, 0);
+        pictureBoxTt.CreateGraphics().RotateTransform(33.0F);        
+        g.Dispose();
       }
-      
+      bm.Dispose();
+
     }
 
     private void button2_Click(object sender, EventArgs e)
     {
-      AnimateTurntable();
+      AnimateTurntable(new Point(10,10), new Point(100,200));
+    }
+    //https://stackoverflow.com/questions/27431345/rotating-image-around-center-c-sharp
+    public static Bitmap RotateImageN(Bitmap b, float angle)
+    {
+      //Create a new empty bitmap to hold rotated image.
+      Bitmap returnBitmap = new Bitmap(b.Width, b.Height);
+      //Make a graphics object from the empty bitmap.
+      Graphics g = Graphics.FromImage(returnBitmap);
+      //move rotation point to center of image.
+      g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+      g.TranslateTransform((float)b.Width / 2, (float)b.Height / 2);
+      //Rotate.        
+      g.RotateTransform(angle);
+      //Move image back.
+      g.TranslateTransform(-(float)b.Width / 2, -(float)b.Height / 2);
+      //Draw passed in image onto graphics object.
+      //Found ERROR 1: Many people do g.DwarImage(b,0,0); The problem is that you re giving just the position
+      //Found ERROR 2: Many people do g.DrawImage(b, new Point(0,0)); The size still not present hehe :3
+
+      g.DrawImage(b, 0, 0, b.Width, b.Height);  //My Final Solution :3
+      return returnBitmap;
     }
   }
 }
