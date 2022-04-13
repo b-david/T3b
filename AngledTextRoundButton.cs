@@ -18,15 +18,17 @@ namespace T3
   }
   public partial class AngledTextRoundButton : Button
   {
+
     public float PositionAngle { get; set; }  // to rotate your text  
     public float TextAngle { get; set; }
     private RailButtonStatus _status = RailButtonStatus.None;
-    public RailButtonStatus Status {
+    public RailButtonStatus Status
+    {
       get
       {
         return _status;
       }
-      set 
+      set
       {
         _status = value;
         switch (Status)
@@ -34,30 +36,35 @@ namespace T3
           case RailButtonStatus.None:
             {
               this.BackColor = Color.DarkRed;
+              this.Enabled = false;
               break;
             }
           case RailButtonStatus.Inactive:
             {
               this.BackColor = Color.LightGray;
+              this.Enabled = false;
               break;
             }
           case RailButtonStatus.Ready:
             {
               this.BackColor = Color.Yellow;
+              this.Enabled = true;
               break;
             }
           case RailButtonStatus.TurningTo:
             {
               this.BackColor = Color.LightBlue;
+              this.Enabled = false;
               break;
             }
 
         }
-      } }
+      }
+    }
     public AngledTextRoundButton()
     {
       this.BackColor = Color.LightGoldenrodYellow;
-      this.FlatStyle = FlatStyle.Popup;
+      this.FlatStyle = FlatStyle.Flat;
 
     }
 

@@ -32,6 +32,9 @@ namespace T3
       // Vytvoreni datove struktury uchovavajici informace o tocne.
 
       Tt = new TurnTable();
+      this.SetStyle(ControlStyles.UserPaint, true);
+      this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+      this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 
       Log.Verbose("Binding data.");
       // Data binding
@@ -156,14 +159,29 @@ namespace T3
       // Velikost oblasti pro tlacitka
       //  - b^2 = c^2 + angleRadians^2 - 2*c*angleRadians*cos(beta)
       //  - b = sqrt(2*r^2-2*r^2*cos(beta))
-      double buttonRange = Math.Sqrt(r * r * 2 - 2 * r * r * Math.Cos(Math.PI / 180 * Tt.Config.RailAngleSize));
-
-      // Velikost tlacitka koleje.
+      /* #note vypocet velikosti tlacitka zatim preskocim, neni to dulezite
+      double buttonRange = 0.0;
+      try
+      {
+        buttonRange = Math.Sqrt(r * r * 2 - 2 * r * r * Math.Cos(Math.PI / 180 * Tt.Config.RailAngleSize));
+      }
+      catch(Exception ex)
+      {
+        Log.Error(ex.ToString);
+        MessageBox.Show("Došlo k chybě při výpočtu velikosti tlačítka");
+      }      
+      final
+      {
+        Log.Information("2 Button Range = " + buttonRange.ToString());
+      }
+       // Velikost tlacitka koleje.
       int railButtonWidth = (int)buttonRange;
+      */
+
       // Offset tlacitka koleje
       // #todo offsety jsou pro sirku a vysku rozdilne
-      int railButtonOffset = railButtonWidth / 2;
-      Log.Information("2 Button Range = " + buttonRange.ToString());
+      int railButtonOffset = _roundButtonSize / 2;
+      
 
       try
       {
@@ -244,7 +262,17 @@ namespace T3
 
     private void T3_Load(object sender, EventArgs e)
     {
-      Tt.LoadConfigDataFromJsonFile();
+      try
+      {
+        Tt.LoadConfigDataFromJsonFile();
+      }
+      catch (Exception ex)
+      {        
+        MessageBox.Show("Došlo k chybě při načítání konfiguračního souboru.");
+        Log.Error(ex.ToString());
+      }
+
+      _bufl = new Bitmap(splitContainerMain.Panel2.Width, splitContainerMain.Panel2.Height);      
     }
     /// <summary>
     /// 
@@ -259,6 +287,31 @@ namespace T3
     private void Button1_Click(object sender, EventArgs e)
     {
 
+    }
+    private double _currentTtAngle = 0;
+    private double _wantedAngle = 0;
+    private Bitmap _bufl;
+    private readonly Pen _ttPen = new Pen(Brushes.Black, 8.0F) 
+      { LineJoin= System.Drawing.Drawing2D.LineJoin.Bevel };
+    public void AnimateTurntable()
+    {
+      
+      //Bitmap bufl = new Bitmap(splitContainerMain.Panel2.Width, splitContainerMain.Panel2..Height)
+      using (Graphics g = Graphics.FromImage(_bufl))
+      {        
+
+        // Draw a rectangle.
+        g.DrawLine(_ttPen, new Point(10,10), new Point(100,100));        
+
+        // kresleni zde
+        splitContainerMain.Panel2.CreateGraphics().DrawImageUnscaled(_bufl, 0, 0);
+      }
+      
+    }
+
+    private void button2_Click(object sender, EventArgs e)
+    {
+      AnimateTurntable();
     }
   }
 }

@@ -66,7 +66,6 @@ namespace T3
       this.tableLayoutPanelConnectionSettings.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
       this.splitContainerMain.Panel1.SuspendLayout();
-      this.splitContainerMain.Panel2.SuspendLayout();
       this.splitContainerMain.SuspendLayout();
       this.flowLayoutOptions.SuspendLayout();
       this.tableLayoutPanel1.SuspendLayout();
@@ -248,9 +247,8 @@ namespace T3
       // 
       this.splitContainerMain.Panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("splitContainerMain.Panel2.BackgroundImage")));
       this.splitContainerMain.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-      this.splitContainerMain.Panel2.Controls.Add(this.button2);
       this.splitContainerMain.Size = new System.Drawing.Size(1183, 903);
-      this.splitContainerMain.SplitterDistance = 389;
+      this.splitContainerMain.SplitterDistance = 323;
       this.splitContainerMain.TabIndex = 19;
       // 
       // flowLayoutOptions
@@ -264,6 +262,7 @@ namespace T3
       this.flowLayoutOptions.Controls.Add(this.splitContainerForceTurn);
       this.flowLayoutOptions.Controls.Add(this.buttonStop);
       this.flowLayoutOptions.Controls.Add(this.button1);
+      this.flowLayoutOptions.Controls.Add(this.button2);
       this.flowLayoutOptions.Location = new System.Drawing.Point(3, 3);
       this.flowLayoutOptions.Name = "flowLayoutOptions";
       this.flowLayoutOptions.Size = new System.Drawing.Size(318, 664);
@@ -457,12 +456,13 @@ namespace T3
       this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
       this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
       this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.button2.Location = new System.Drawing.Point(22, 6);
+      this.button2.Location = new System.Drawing.Point(165, 291);
       this.button2.Name = "button2";
       this.button2.Size = new System.Drawing.Size(146, 46);
       this.button2.TabIndex = 3;
       this.button2.Text = "TestButton";
       this.button2.UseVisualStyleBackColor = true;
+      this.button2.Click += new System.EventHandler(this.button2_Click);
       // 
       // T3
       // 
@@ -479,7 +479,6 @@ namespace T3
       this.tableLayoutPanelConnectionSettings.ResumeLayout(false);
       this.tableLayoutPanelConnectionSettings.PerformLayout();
       this.splitContainerMain.Panel1.ResumeLayout(false);
-      this.splitContainerMain.Panel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
       this.splitContainerMain.ResumeLayout(false);
       this.flowLayoutOptions.ResumeLayout(false);

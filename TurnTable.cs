@@ -25,6 +25,8 @@ namespace T3
     private string _portOut = "";
     private MyConfig _config;
 
+    
+
     // Nastaveni statusu
     private ConnectionStatus _connectionInStatus = ConnectionStatus.Disconnected;
     private ConnectionStatus _connectionOutStatus = ConnectionStatus.Disconnected;
@@ -129,7 +131,9 @@ namespace T3
       }
       catch (Exception e)
       {
+        
         Log.Error(e.ToString());
+        throw new Exception();        
       }
       // Zpracuj vstupy
 

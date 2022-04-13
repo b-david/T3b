@@ -7,3 +7,4 @@
  * - tlacitka connect se predelaji na disconnect?
  * https://github.com/kmzbrnoI/mtb-daemon/blob/master/utils/manage.py
  * */
+ - nezpracovaná chyba při neexistujícím konfiguračním souboru.
