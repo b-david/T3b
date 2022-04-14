@@ -287,7 +287,7 @@ namespace T3
 
     private void Button1_Click(object sender, EventArgs e)
     {
-      
+    //  RotateImageN(, 20.0F);
     }
 
     private double _currentTtAngle = 0;
@@ -307,7 +307,7 @@ namespace T3
 
         // kresleni zde        
         pictureBoxTt.CreateGraphics().DrawImageUnscaled(bm, 0, 0);
-        pictureBoxTt.CreateGraphics().RotateTransform(33.0F);        
+        pictureBoxTt.CreateGraphics().RotateTransform(50.0F);        
         g.Dispose();
       }
       bm.Dispose();
@@ -338,6 +338,12 @@ namespace T3
 
       g.DrawImage(b, 0, 0, b.Width, b.Height);  //My Final Solution :3
       return returnBitmap;
+    }
+
+    private void buttonSend_Click(object sender, EventArgs e)
+    {
+      byte[] data = System.Text.Encoding.UTF8.GetBytes(textBoxRequest.Text);
+      Tt.SenderOut.SendData(data);
     }
   }
 }

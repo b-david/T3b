@@ -17,7 +17,7 @@ namespace T3
     private MyTcpSender _senderOut;
 
     private byte _currentRailLocationNumber;
-    private byte _numberOfRails;    
+    private byte _numberOfRails;
     // Nastaveni hodnot pro pripojeni
     private string _ipIn = "";
     private string _ipOut = "";
@@ -25,7 +25,7 @@ namespace T3
     private string _portOut = "";
     private MyConfig _config;
 
-    
+
 
     // Nastaveni statusu
     private ConnectionStatus _connectionInStatus = ConnectionStatus.Disconnected;
@@ -39,7 +39,7 @@ namespace T3
      * **/
     public TurnTable()
     {
-      CurrentRailLocationNumber = 0;      
+      CurrentRailLocationNumber = 0;
     }
     /// 
     /// Zapouzdreni.
@@ -131,9 +131,9 @@ namespace T3
       }
       catch (Exception e)
       {
-        
+
         Log.Error(e.ToString());
-        throw new Exception();        
+        throw new Exception();
       }
       // Zpracuj vstupy
 
@@ -188,12 +188,13 @@ namespace T3
      **/
     public void ConnectOut()
     {
-      Log.Information("Zapnuti pripojeni na " + IpOut + ":" + PortOut);
+      Log.Information("Pokus o  pripojeni na " + IpOut + ":" + PortOut);
       if (SenderOut != null) DisconnectSender();
       ConnectionOutStatus = ConnectionStatus.Connecting;
       try
       {
         SenderOut = new MyTcpSender(IpOut, int.Parse(PortOut));
+        Log.Verbose("Pripojeno na soket " + IpOut + ":" + PortOut);
         ConnectionOutStatus = ConnectionStatus.Connected;
       }
       catch (FormatException e)

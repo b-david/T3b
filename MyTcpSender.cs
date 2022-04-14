@@ -8,28 +8,31 @@ namespace T3
 {
   class MyTcpSender
   {
-    private TcpClient tcpClient;    
+    private TcpClient _tcpClient;
+    private ConnectionStatus _status = ConnectionStatus.NotSet;
     public MyTcpSender(string ip, int port)
     {
       try
       {
-        Log.Verbose("Vytvarim TCP klienta.");
-        tcpClient = new TcpClient(ip, port);
+        _status = ConnectionStatus.Connecting;
+        Log.Verbose("Vytvarim TCP klienta.");        
+        _tcpClient = new TcpClient(ip, port);
+        _status = ConnectionStatus.Connected;
       }
       catch(ArgumentNullException e)
       {
-        Log.Error("Chyba pripojeni vystupniho TCP klienta "+e.ToString());        
-        MessageBox.Show("Null reference v hodnotach pro pripojeni vystupu.");
+        Log.Error("Chyba pripojeni vystupniho TCP klienta "+e.ToString());
+        _status = ConnectionStatus.Error;
       }
       catch (ArgumentOutOfRangeException e)
       {
         Log.Error("Chyba pripojeni vystupniho TCP klienta " + e.ToString());
-        MessageBox.Show("Hodnoty pro pripojeni vystupu jsou mimo rozsah.");
+        _status = ConnectionStatus.Error;
       }
       catch (SocketException e)
       {
         Log.Error("Chyba pripojeni vystupniho TCP klienta " + e.ToString());
-        MessageBox.Show("Chyba soketu.");
+        _status = ConnectionStatus.Error;
       }
     }
     /**
@@ -42,8 +45,8 @@ namespace T3
     {
       try
       {
-        Log.Information("Odesilam data "+data.ToString());
-        tcpClient.Client.Send(data);        
+        Log.Information("Odesilam data "+ System.Text.Encoding.Default.GetString(data));
+        _tcpClient.Client.Send(data);        
       }
       catch (ArgumentNullException e)
       {
@@ -70,7 +73,7 @@ namespace T3
     public void CloseConnection()
     {
       Log.Information("Uzavirani pripojeni vystupu.");
-      if(tcpClient!=null) tcpClient.Close();      
+      if(_tcpClient!=null) _tcpClient.Close();      
     }
   }
 }

@@ -61,9 +61,11 @@ namespace T3
       this.buttonForceTurnCW = new System.Windows.Forms.Button();
       this.buttonForceTurnCCW = new System.Windows.Forms.Button();
       this.buttonStop = new System.Windows.Forms.Button();
-      this.button1 = new System.Windows.Forms.Button();
+      this.buttonSend = new System.Windows.Forms.Button();
       this.button2 = new System.Windows.Forms.Button();
       this.pictureBoxTt = new System.Windows.Forms.PictureBox();
+      this.textBoxResponse = new System.Windows.Forms.TextBox();
+      this.textBoxRequest = new System.Windows.Forms.TextBox();
       this.tableLayoutPanelConnectionSettings.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
       this.splitContainerMain.Panel1.SuspendLayout();
@@ -265,8 +267,10 @@ namespace T3
       this.flowLayoutOptions.Controls.Add(this.flowLayoutPanelNumberOfRails);
       this.flowLayoutOptions.Controls.Add(this.splitContainerForceTurn);
       this.flowLayoutOptions.Controls.Add(this.buttonStop);
-      this.flowLayoutOptions.Controls.Add(this.button1);
+      this.flowLayoutOptions.Controls.Add(this.buttonSend);
       this.flowLayoutOptions.Controls.Add(this.button2);
+      this.flowLayoutOptions.Controls.Add(this.textBoxResponse);
+      this.flowLayoutOptions.Controls.Add(this.textBoxRequest);
       this.flowLayoutOptions.Location = new System.Drawing.Point(3, 3);
       this.flowLayoutOptions.Name = "flowLayoutOptions";
       this.flowLayoutOptions.Size = new System.Drawing.Size(318, 664);
@@ -437,21 +441,21 @@ namespace T3
       // 
       this.buttonStop.Location = new System.Drawing.Point(3, 291);
       this.buttonStop.Name = "buttonStop";
-      this.buttonStop.Size = new System.Drawing.Size(75, 23);
+      this.buttonStop.Size = new System.Drawing.Size(75, 46);
       this.buttonStop.TabIndex = 25;
       this.buttonStop.Text = "Stop";
       this.buttonStop.UseVisualStyleBackColor = true;
       this.buttonStop.Click += new System.EventHandler(this.ButtonStop_Click);
       // 
-      // button1
+      // buttonSend
       // 
-      this.button1.Location = new System.Drawing.Point(84, 291);
-      this.button1.Name = "button1";
-      this.button1.Size = new System.Drawing.Size(75, 23);
-      this.button1.TabIndex = 26;
-      this.button1.Text = "button1";
-      this.button1.UseVisualStyleBackColor = true;
-      this.button1.Click += new System.EventHandler(this.Button1_Click);
+      this.buttonSend.Location = new System.Drawing.Point(84, 291);
+      this.buttonSend.Name = "buttonSend";
+      this.buttonSend.Size = new System.Drawing.Size(75, 46);
+      this.buttonSend.TabIndex = 26;
+      this.buttonSend.Text = "Posli pozadavek";
+      this.buttonSend.UseVisualStyleBackColor = true;
+      this.buttonSend.Click += new System.EventHandler(this.buttonSend_Click);
       // 
       // button2
       // 
@@ -475,6 +479,25 @@ namespace T3
       this.pictureBoxTt.Size = new System.Drawing.Size(504, 510);
       this.pictureBoxTt.TabIndex = 0;
       this.pictureBoxTt.TabStop = false;
+      // 
+      // textBoxResponse
+      // 
+      this.textBoxResponse.Location = new System.Drawing.Point(3, 343);
+      this.textBoxResponse.Multiline = true;
+      this.textBoxResponse.Name = "textBoxResponse";
+      this.textBoxResponse.Size = new System.Drawing.Size(156, 286);
+      this.textBoxResponse.TabIndex = 27;
+      this.textBoxResponse.Text = "response";
+      // 
+      // textBoxRequest
+      // 
+      this.textBoxRequest.Location = new System.Drawing.Point(165, 343);
+      this.textBoxRequest.Multiline = true;
+      this.textBoxRequest.Name = "textBoxRequest";
+      this.textBoxRequest.Size = new System.Drawing.Size(150, 286);
+      this.textBoxRequest.TabIndex = 28;
+      this.textBoxRequest.Text = "{\r\n\'command\': \'module_set_outputs\',\r\n\'address\': 150,\r\n\'outputs\': {\r\n    0: {\'type" +
+    "\':\'TTL\', \'value\': 1},\r\n    1: {\'type\':\'TTL\', \'value\': 1},    \r\n}\r\n";
       // 
       // T3
       // 
@@ -549,9 +572,11 @@ namespace T3
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     private System.Windows.Forms.FlowLayoutPanel flowLayoutOptions;
     private System.Windows.Forms.Button buttonStop;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonSend;
     private System.Windows.Forms.Button button2;
     private System.Windows.Forms.PictureBox pictureBoxTt;
+    private System.Windows.Forms.TextBox textBoxResponse;
+    private System.Windows.Forms.TextBox textBoxRequest;
   }
 }
 
